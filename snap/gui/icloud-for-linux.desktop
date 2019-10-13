@@ -1,0 +1,8 @@
+[Desktop Entry]
+Version=0.1
+Name=iCloud for Linux
+GenericName=iCloud for Linux
+Comment=iCloud for Linux
+Type=Application
+Icon=${SNAP}/meta/gui/icon.png
+Exec=icloud-for-linux

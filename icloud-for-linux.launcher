@@ -1,0 +1,13 @@
+#!/bin/sh
+
+# Disable the chromium sandbox to work around https://launchpad.net/bugs/1599234.
+# Rely on snapd’s security policy instead.
+export OXIDE_NO_SANDBOX=1
+
+# Explicitly set APP_ID.
+export APP_ID=icloud-for-linux
+
+# Remove problematic environment variable
+unset QT_QPA_PLATFORM
+
+exec "$SNAP/bin/desktop-launch" "qmlscene" "$SNAP/icloud-for-linux.qml"
