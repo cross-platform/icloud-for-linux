@@ -1,0 +1,8 @@
+[Desktop Entry]
+Version=0.1
+Name=iCloud Numbers
+GenericName=iCloud Numbers
+Comment=iCloud Numbers
+Type=Application
+Icon=${SNAP}/snap/gui/numbers.png
+Exec=icloud-for-linux.numbers

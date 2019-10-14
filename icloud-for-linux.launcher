@@ -10,4 +10,4 @@ export APP_ID=icloud-for-linux
 # Remove problematic environment variable
 unset QT_QPA_PLATFORM
 
-exec "$SNAP/bin/desktop-launch" "qmlscene" "$SNAP/icloud-for-linux.qml"
+exec "$SNAP/bin/desktop-launch" "qmlscene" "$1" "$2" "$SNAP/icloud-for-linux.qml"

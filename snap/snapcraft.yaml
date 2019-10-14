@@ -1,0 +1,88 @@
+name: icloud-for-linux
+version: '0.1'
+summary: iCloud for Linux
+description: iCloud for Linux
+
+grade: stable
+confinement: strict
+base: core18
+
+layout:
+  /usr/share/qt5:
+    bind: $SNAP/usr/share/qt5
+
+parts:
+  desktop-qt5:
+    source: https://github.com/ubuntu/snapcraft-desktop-helpers.git
+    source-subdir: qt
+    plugin: make
+    make-parameters: ["FLAVOR=qt5"]
+
+  icloud-for-linux-qml:
+    after: [desktop-qt5]
+    source: .
+    plugin: dump
+    stage-packages:
+      - qmlscene
+      - qml-module-qtquick2
+      - qml-module-qtquick-window2
+      - qml-module-qtwebview
+      - qml-module-qtwebengine
+    organize:
+      icloud-for-linux.launcher: bin/icloud-for-linux.launcher
+
+apps:
+  mail:
+    command: icloud-for-linux.launcher mail "iCloud Mail"
+    desktop: snap/gui/mail.desktop
+    plugs: &plugs
+      - browser-support
+      - desktop
+      - desktop-legacy
+      - network
+      - opengl
+      - x11
+  contacts:
+    command: icloud-for-linux.launcher contacts "iCloud Contacts"
+    desktop: snap/gui/contacts.desktop
+    plugs: *plugs
+  calendar:
+    command: icloud-for-linux.launcher calendar "iCloud Calendar"
+    desktop: snap/gui/calendar.desktop
+    plugs: *plugs
+  photos:
+    command: icloud-for-linux.launcher photos "iCloud Photos"
+    desktop: snap/gui/photos.desktop
+    plugs: *plugs
+  drive:
+    command: icloud-for-linux.launcher iclouddrive "iCloud Drive"
+    desktop: snap/gui/drive.desktop
+    plugs: *plugs
+  notes:
+    command: icloud-for-linux.launcher notes "iCloud Notes"
+    desktop: snap/gui/notes.desktop
+    plugs: *plugs
+  reminders:
+    command: icloud-for-linux.launcher reminders "iCloud Reminders"
+    desktop: snap/gui/reminders.desktop
+    plugs: *plugs
+  pages:
+    command: icloud-for-linux.launcher pages "iCloud Pages"
+    desktop: snap/gui/pages.desktop
+    plugs: *plugs
+  numbers:
+    command: icloud-for-linux.launcher numbers "iCloud Numbers"
+    desktop: snap/gui/numbers.desktop
+    plugs: *plugs
+  keynote:
+    command: icloud-for-linux.launcher keynote "iCloud Keynote"
+    desktop: snap/gui/keynote.desktop
+    plugs: *plugs
+  find-my-friends:
+    command: icloud-for-linux.launcher fmf "iCloud Find My Friends"
+    desktop: snap/gui/find-my-friends.desktop
+    plugs: *plugs
+  find-my-iphone:
+    command: icloud-for-linux.launcher find "iCloud Find My iPhone"
+    desktop: snap/gui/find-my-iphone.desktop
+    plugs: *plugs
