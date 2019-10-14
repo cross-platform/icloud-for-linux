@@ -4,7 +4,7 @@ import QtWebView 1.1
 
 Window {
   title: Qt.application.arguments[2]
-  width: 800
+  width: 960
   height: 600
 
   WebView {
