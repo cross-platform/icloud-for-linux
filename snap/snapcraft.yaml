@@ -1,5 +1,5 @@
 name: icloud-for-linux
-version: '0.1'
+version: '0.2'
 summary: iCloud for Linux
 description: iCloud for Linux
 
@@ -26,8 +26,8 @@ parts:
       - qmlscene
       - qml-module-qtquick2
       - qml-module-qtquick-window2
-      - qml-module-qtwebview
       - qml-module-qtwebengine
+      - qml-module-qtquick-dialogs
     organize:
       icloud-for-linux.launcher: bin/icloud-for-linux.launcher
 
@@ -39,8 +39,10 @@ apps:
       - browser-support
       - desktop
       - desktop-legacy
+      - home
       - network
       - opengl
+      - screen-inhibit-control
       - x11
   contacts:
     command: icloud-for-linux.launcher contacts "iCloud Contacts"
