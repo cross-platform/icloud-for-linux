@@ -4,7 +4,7 @@ import QtWebEngine 1.5
 
 Window {
   title: Qt.application.arguments[2]
-  width: 960
+  width: 1000
   height: 600
   visible: true
 
@@ -15,8 +15,13 @@ Window {
     url: "https://www.icloud.com/" + Qt.application.arguments[1]
 
     onNewViewRequested: function(request) {
-      var newWindow = windowComponent.createObject(windowParent);
-      request.openIn(newWindow.webView);
+      if (request.requestedUrl.toString().startsWith('https://www.icloud.com/')) {
+        var newWindow = windowComponent.createObject(windowParent);
+        request.openIn(newWindow.webView);
+      }
+      else {
+        Qt.openUrlExternally(request.requestedUrl)
+      }
     }
 
     profile.onDownloadRequested: function(download) {
@@ -26,7 +31,7 @@ Window {
 
   property Component windowComponent: Window {
     title: Qt.application.arguments[2]
-    width: 960
+    width: 1000
     height: 600
     visible: true
 
