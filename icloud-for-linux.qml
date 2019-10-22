@@ -11,6 +11,7 @@ Window {
   WebEngineView {
     id: windowParent
     anchors.fill: parent
+    zoomFactor: 0.8
 
     url: "https://www.icloud.com/" + Qt.application.arguments[1]
 
