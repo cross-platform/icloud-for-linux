@@ -1,0 +1,8 @@
+[Desktop Entry]
+Version=0.1
+Name=Excel
+GenericName=Excel
+Comment=Excel
+Type=Application
+Icon=${SNAP}/snap/gui/excel.png
+Exec=unofficial-office.excel

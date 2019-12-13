@@ -1,0 +1,8 @@
+[Desktop Entry]
+Version=0.1
+Name=Word
+GenericName=Word
+Comment=Word
+Type=Application
+Icon=${SNAP}/snap/gui/word.png
+Exec=unofficial-office.word

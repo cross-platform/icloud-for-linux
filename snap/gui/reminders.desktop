@@ -1,8 +1,0 @@
-[Desktop Entry]
-Version=0.3
-Name=iCloud Reminders
-GenericName=iCloud Reminders
-Comment=iCloud Reminders
-Type=Application
-Icon=${SNAP}/snap/gui/reminders.png
-Exec=icloud-for-linux.reminders

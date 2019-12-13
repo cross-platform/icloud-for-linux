@@ -1,8 +1,0 @@
-[Desktop Entry]
-Version=0.3
-Name=iCloud Mail
-GenericName=iCloud Mail
-Comment=iCloud Mail
-Type=Application
-Icon=${SNAP}/snap/gui/mail.png
-Exec=icloud-for-linux.mail

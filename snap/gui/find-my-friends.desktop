@@ -1,8 +1,0 @@
-[Desktop Entry]
-Version=0.3
-Name=iCloud Find My Friend
-GenericName=iCloud Find My Friend
-Comment=iCloud Find My Friend
-Type=Application
-Icon=${SNAP}/snap/gui/find-my-friends.png
-Exec=icloud-for-linux.find-my-friends

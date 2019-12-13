@@ -1,0 +1,8 @@
+[Desktop Entry]
+Version=0.1
+Name=PowerPoint
+GenericName=PowerPoint
+Comment=PowerPoint
+Type=Application
+Icon=${SNAP}/snap/gui/powerpoint.png
+Exec=unofficial-office.powerpoint

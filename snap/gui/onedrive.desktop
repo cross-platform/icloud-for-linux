@@ -1,0 +1,8 @@
+[Desktop Entry]
+Version=0.1
+Name=OneDrive
+GenericName=OneDrive
+Comment=OneDrive
+Type=Application
+Icon=${SNAP}/snap/gui/onedrive.png
+Exec=unofficial-office.onedrive

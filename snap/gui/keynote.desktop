@@ -1,8 +1,0 @@
-[Desktop Entry]
-Version=0.3
-Name=iCloud Keynote
-GenericName=iCloud Keynote
-Comment=iCloud Keynote
-Type=Application
-Icon=${SNAP}/snap/gui/keynote.png
-Exec=icloud-for-linux.keynote

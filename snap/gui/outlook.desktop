@@ -1,0 +1,8 @@
+[Desktop Entry]
+Version=0.1
+Name=Outlook
+GenericName=Outlook
+Comment=Outlook
+Type=Application
+Icon=${SNAP}/snap/gui/outlook.png
+Exec=unofficial-office.outlook

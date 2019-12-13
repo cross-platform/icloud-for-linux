@@ -1,7 +1,7 @@
-name: icloud-for-linux
-version: '0.3'
-summary: iCloud for Linux
-description: iCloud for Linux
+name: https://www.office.com/
+version: '0.1'
+summary: Unofficial Office
+description: Unofficial web app wrapper for Office 365
 
 grade: stable
 confinement: strict
@@ -18,7 +18,7 @@ parts:
     plugin: make
     make-parameters: ["FLAVOR=qt5"]
 
-  icloud-for-linux-qml:
+  unofficial-office-qml:
     after: [desktop-qt5]
     source: .
     plugin: dump
@@ -29,12 +29,12 @@ parts:
       - qml-module-qtwebengine
       - qml-module-qtquick-dialogs
     organize:
-      icloud-for-linux.launcher: bin/icloud-for-linux.launcher
+      unofficial-office.launcher: bin/unofficial-office.launcher
 
 apps:
-  mail:
-    command: icloud-for-linux.launcher mail "iCloud Mail"
-    desktop: snap/gui/mail.desktop
+  word:
+    command: unofficial-office.launcher "https://www.office.com/launch/word" "Word"
+    desktop: snap/gui/word.desktop
     plugs: &plugs
       - browser-support
       - desktop
@@ -46,58 +46,28 @@ apps:
       - x11
     environment: &environment
       DISABLE_WAYLAND: 1
-  contacts:
-    command: icloud-for-linux.launcher contacts "iCloud Contacts"
-    desktop: snap/gui/contacts.desktop
+  onedrive:
+    command: unofficial-office.launcher "https://onedrive.live.com/" "OneDrive"
+    desktop: snap/gui/onedrive.desktop
     plugs: *plugs
     environment: *environment
-  calendar:
-    command: icloud-for-linux.launcher calendar "iCloud Calendar"
-    desktop: snap/gui/calendar.desktop
+  outlook:
+    command: unofficial-office.launcher "https://outlook.live.com/mail/0/inbox" "Outlook"
+    desktop: snap/gui/outlook.desktop
     plugs: *plugs
     environment: *environment
-  photos:
-    command: icloud-for-linux.launcher photos "iCloud Photos"
-    desktop: snap/gui/photos.desktop
+  onenote:
+    command: unofficial-office.launcher "https://www.onenote.com/notebooks" "OneNote"
+    desktop: snap/gui/onenote.desktop
     plugs: *plugs
     environment: *environment
-  drive:
-    command: icloud-for-linux.launcher iclouddrive "iCloud Drive"
-    desktop: snap/gui/drive.desktop
+  excel:
+    command: unofficial-office.launcher "https://www.office.com/launch/excel" "Excel"
+    desktop: snap/gui/excel.desktop
     plugs: *plugs
     environment: *environment
-  notes:
-    command: icloud-for-linux.launcher notes "iCloud Notes"
-    desktop: snap/gui/notes.desktop
-    plugs: *plugs
-    environment: *environment
-  reminders:
-    command: icloud-for-linux.launcher reminders "iCloud Reminders"
-    desktop: snap/gui/reminders.desktop
-    plugs: *plugs
-    environment: *environment
-  pages:
-    command: icloud-for-linux.launcher pages "iCloud Pages"
-    desktop: snap/gui/pages.desktop
-    plugs: *plugs
-    environment: *environment
-  numbers:
-    command: icloud-for-linux.launcher numbers "iCloud Numbers"
-    desktop: snap/gui/numbers.desktop
-    plugs: *plugs
-    environment: *environment
-  keynote:
-    command: icloud-for-linux.launcher keynote "iCloud Keynote"
-    desktop: snap/gui/keynote.desktop
-    plugs: *plugs
-    environment: *environment
-  find-my-friends:
-    command: icloud-for-linux.launcher fmf "iCloud Find My Friends"
-    desktop: snap/gui/find-my-friends.desktop
-    plugs: *plugs
-    environment: *environment
-  find-my-iphone:
-    command: icloud-for-linux.launcher find "iCloud Find My iPhone"
-    desktop: snap/gui/find-my-iphone.desktop
+  powerpoint:
+    command: unofficial-office.launcher "https://www.office.com/launch/powerpoint" "PowerPoint"
+    desktop: snap/gui/powerpoint.desktop
     plugs: *plugs
     environment: *environment
