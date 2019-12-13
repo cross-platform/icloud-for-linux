@@ -68,11 +68,11 @@ apps:
     desktop: snap/gui/outlook.desktop
     plugs: *plugs
     environment: *environment
-  excel:
-    command: unofficial-office.launcher "https://www.office.com/launch/excel" "Excel"
-    desktop: snap/gui/excel.desktop
-    plugs: *plugs
-    environment: *environment
+#  excel:
+#    command: unofficial-office.launcher "https://www.office.com/launch/excel" "Excel"
+#    desktop: snap/gui/excel.desktop
+#    plugs: *plugs
+#    environment: *environment
   powerpoint:
     command: unofficial-office.launcher "https://www.office.com/launch/powerpoint" "PowerPoint"
     desktop: snap/gui/powerpoint.desktop
