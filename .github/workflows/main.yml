@@ -16,7 +16,7 @@ jobs:
         sudo apt-get update
         sudo apt-get -y install wget
         wget http://ftp.osuosl.org/pub/ubuntu/pool/universe/q/qtwebengine-opensource-src/qml-module-qtwebengine_5.9.5+dfsg-0ubuntu2_amd64.deb
-        dpkg -i qml-module-qtwebengine_5.9.5+dfsg-0ubuntu2_amd64.deb
+        dpkg -i qml-module-qtwebengine_5.9.5+dfsg-0ubuntu2_amd64.deb || true
         sudo apt-get -fy install
         snapcraft     
     - name: Push snap
