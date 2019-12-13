@@ -63,11 +63,6 @@ apps:
       - x11
     environment: &environment
       DISABLE_WAYLAND: 1
-  onedrive:
-    command: unofficial-office.launcher "https://onedrive.live.com/" "OneDrive"
-    desktop: snap/gui/onedrive.desktop
-    plugs: *plugs
-    environment: *environment
   outlook:
     command: unofficial-office.launcher "https://outlook.live.com/mail/0/inbox" "Outlook"
     desktop: snap/gui/outlook.desktop
@@ -86,5 +81,10 @@ apps:
   #onenote:
     #command: unofficial-office.launcher "https://www.onenote.com/notebooks" "OneNote"
     #desktop: snap/gui/onenote.desktop
+    #plugs: *plugs
+    #environment: *environment
+  #onedrive:
+    #command: unofficial-office.launcher "https://onedrive.live.com/" "OneDrive"
+    #desktop: snap/gui/onedrive.desktop
     #plugs: *plugs
     #environment: *environment
