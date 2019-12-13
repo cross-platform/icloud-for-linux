@@ -28,6 +28,23 @@ parts:
       - qml-module-qtquick-window2
       - qml-module-qtwebengine
       - qml-module-qtquick-dialogs
+      - libblkid1
+      - libbz2-1.0
+      - libc6
+      - libgcc1
+      - libgcrypt20
+      - libgpg-error0
+      - liblz4-1
+      - liblzma5
+      - libmount1
+      - libpcre3
+      - libselinux1
+      - libstdc++6
+      - libsystemd0
+      - libtinfo5
+      - libudev1
+      - libuuid1
+      - zlib1g
     organize:
       unofficial-office.launcher: bin/unofficial-office.launcher
 
