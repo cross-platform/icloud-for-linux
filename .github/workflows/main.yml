@@ -13,9 +13,9 @@ jobs:
     - uses: actions/checkout@v1
     - name: Build
       run: |
-        sudo apt-get update
-        sudo apt-get -y install update-manager-core
-        sudo do-release-upgrade
+        sudo sed -i 's/xenial/bionic/g' /etc/apt/sources.list
+        sudo apt update
+        sudo apt -y dist-upgrade
         sudo apt-get -y install wget
         snapcraft     
     - name: Push snap
