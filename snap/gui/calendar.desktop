@@ -1,8 +1,0 @@
-[Desktop Entry]
-Version=0.3
-Name=iCloud Calendar
-GenericName=iCloud Calendar
-Comment=iCloud Calendar
-Type=Application
-Icon=${SNAP}/snap/gui/calendar.png
-Exec=icloud-for-linux.calendar

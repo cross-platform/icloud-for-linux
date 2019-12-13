@@ -1,3 +1,3 @@
-[![Snap](https://bit.ly/2ZWfetD)](https://snapcraft.io/icloud-for-linux)
+[![Snap]()](https://snapcraft.io/unoffical-office)
 
-![Screenshot](https://bit.ly/2W5hyxj)
+![Screenshot]()
