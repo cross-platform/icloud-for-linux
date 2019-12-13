@@ -56,11 +56,6 @@ apps:
     desktop: snap/gui/outlook.desktop
     plugs: *plugs
     environment: *environment
-  onenote:
-    command: unofficial-office.launcher "https://www.onenote.com/notebooks" "OneNote"
-    desktop: snap/gui/onenote.desktop
-    plugs: *plugs
-    environment: *environment
   excel:
     command: unofficial-office.launcher "https://www.office.com/launch/excel" "Excel"
     desktop: snap/gui/excel.desktop
@@ -71,3 +66,8 @@ apps:
     desktop: snap/gui/powerpoint.desktop
     plugs: *plugs
     environment: *environment
+  #onenote:
+    #command: unofficial-office.launcher "https://www.onenote.com/notebooks" "OneNote"
+    #desktop: snap/gui/onenote.desktop
+    #plugs: *plugs
+    #environment: *environment
