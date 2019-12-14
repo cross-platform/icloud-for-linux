@@ -26,6 +26,7 @@ parts:
       sudo chmod +x unofficial-office.launcher
       cp -v unofficial-office.launcher "$SNAPCRAFT_PART_INSTALL"
       cp -vr snap/gui/* "$SNAPCRAFT_PART_INSTALL"
+      cp -v bin/desktoplaunch .
     stage-packages:
       - qmlscene
       - qml-module-qtquick2
