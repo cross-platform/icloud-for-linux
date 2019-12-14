@@ -16,6 +16,37 @@ Window {
     url: Qt.application.arguments[1]
 
     onNewViewRequested: function(request) {
+      if (request.requestedUrl.toString().includes('live.com')) {
+        var newWindow = windowComponent.createObject(windowParent);
+        request.openIn(newWindow.webView);
+      }
+      else if (request.requestedUrl.toString().includes('microsoft.com')) {
+        var newWindow = windowComponent.createObject(windowParent);
+        request.openIn(newWindow.webView);
+      }
+      else if (request.requestedUrl.toString().includes('office.com')) {
+        var newWindow = windowComponent.createObject(windowParent);
+        request.openIn(newWindow.webView);
+      }
+      else if (request.requestedUrl.toString().includes('outlook.com')) {
+        var newWindow = windowComponent.createObject(windowParent);
+        request.openIn(newWindow.webView);
+      }
+      else if (request.requestedUrl.toString().includes('bing.com')) {
+        var newWindow = windowComponent.createObject(windowParent);
+        request.openIn(newWindow.webView);
+      }
+      else if (request.requestedUrl.toString().includes('msn.com')) {
+        var newWindow = windowComponent.createObject(windowParent);
+        request.openIn(newWindow.webView);
+      }
+      else if (request.requestedUrl.toString().includes('onenote.com')) {
+        var newWindow = windowComponent.createObject(windowParent);
+        request.openIn(newWindow.webView);
+      }                     
+      else {
+        Qt.openUrlExternally(request.requestedUrl)
+      }    
     }
 
     profile.onDownloadRequested: function(download) {
