@@ -4,5 +4,5 @@ Name=OneNote
 GenericName=OneNote
 Comment=OneNote
 Type=Application
-Icon=${SNAP}/snap/gui/onenote.png
+Icon=${SNAP}/onenote.png
 Exec=unofficial-office.onenote
