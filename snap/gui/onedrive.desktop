@@ -4,5 +4,5 @@ Name=OneDrive
 GenericName=OneDrive
 Comment=OneDrive
 Type=Application
-Icon=${SNAP}/snap/gui/onedrive.png
+Icon=${SNAP}/onedrive.png
 Exec=unofficial-office.onedrive
