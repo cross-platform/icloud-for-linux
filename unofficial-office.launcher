@@ -10,4 +10,4 @@ export APP_ID=unofficial-office
 # Remove problematic environment variable
 unset QT_QPA_PLATFORM
 
-exec "$SNAP/bin/desktop-launch" "qmlscene" "$1" "$2" "$SNAP/unofficial-office.qml"
+exec "$SNAP/desktop-launch" "qmlscene" "$1" "$2" "$SNAP/unofficial-office.qml"
