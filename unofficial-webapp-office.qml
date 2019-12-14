@@ -11,7 +11,7 @@ Window {
   WebEngineView {
     id: windowParent
     anchors.fill: parent
-    zoomFactor: 0.8
+    zoomFactor: 1.0
 
     url: Qt.application.arguments[1]
 
