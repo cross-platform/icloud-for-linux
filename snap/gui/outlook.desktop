@@ -4,5 +4,5 @@ Name=Outlook
 GenericName=Outlook
 Comment=Outlook
 Type=Application
-Icon=${SNAP}/snap/gui/outlook.png
+Icon=${SNAP}/outlook.png
 Exec=unofficial-office.outlook
