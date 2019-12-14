@@ -11,7 +11,9 @@ A set of web app wrappers, based on QtWebEngine, for the following websites:
 
 These are links to the Office 365 web apps embedded in a minimalist web browser.
 
-This snap is not supported or endorsed by Microsoft, Inc.
+This snap is not supported by or endorsed by Microsoft, Inc.
+
+Office 365, OneNote, OneDrive, Outlook, Excel, PowerPoint, and Microsoft are trademarks or registered trademarks of Microsoft, Inc.
 
 ## Download
 
