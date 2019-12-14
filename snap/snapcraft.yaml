@@ -1,7 +1,7 @@
-name: unofficial-office
+name: unofficial-webapp-office
 version: '0.1'
 summary: Unofficial Office
-description: Unofficial web app wrapper for Office 365
+description: Unofficial wrapper for Office 365 web apps.
 
 confinement: strict
 base: core18
