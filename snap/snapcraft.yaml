@@ -28,8 +28,6 @@ parts:
       - qml-module-qtquick-window2
       - qml-module-qtwebengine
       - qml-module-qtquick-dialogs
-      - nano
-      - ttf-mscorefonts-installer
     organize:
       unofficial-office.launcher: bin/unofficial-office.launcher
 
