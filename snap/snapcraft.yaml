@@ -22,6 +22,12 @@ parts:
     after: [desktop-qt5]
     source: .
     plugin: dump
+    override-build: |
+      sudo chmod +x unofficial-office.launcher
+      mkdir "$SNAPCRAFT_PART_INSTALL"/bin
+      cp -v unofficial-office.launcher "$SNAPCRAFT_PART_INSTALL"/bin
+      mkdir "$SNAPCRAFT_PART_INSTALL"/gui
+      cp -vr snap/gui/* "$SNAPCRAFT_PART_INSTALL"/gui
     stage-packages:
       - qmlscene
       - qml-module-qtquick2
@@ -45,7 +51,7 @@ parts:
       - libuuid1
       - zlib1g
     organize:
-      unofficial-office.launcher: bin/unofficial-office.launcher
+      unofficial-office.launcher: bin/
 
 apps:
   word:
