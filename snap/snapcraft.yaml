@@ -3,7 +3,6 @@ version: '0.1'
 summary: Unofficial Office
 description: Unofficial web app wrapper for Office 365
 
-grade: stable
 confinement: strict
 base: core18
 
