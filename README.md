@@ -12,6 +12,8 @@ This snap is not supported or endorsed by Microsoft, Inc.
 
 ## Download
 
+snap install unofficial-webapp-office
+
 [![Snap](https://snapcraft.io/static/images/badges/en/snap-store-black.svg)](https://snapcraft.io/unofficial-webapp-office)
 
 ## Notes
