@@ -1,8 +1,8 @@
 [Desktop Entry]
 Version=0.1
-Name=OneDrive
-GenericName=OneDrive
-Comment=OneDrive
+Name=OneNote
+GenericName=OneNote
+Comment=OneNote
 Type=Application
-Icon=${SNAP}/onedrive.png
-Exec=unofficial-office.onedrive
+Icon=${SNAP}/snap/gui/onenote.png
+Exec=unofficial-office.onenote

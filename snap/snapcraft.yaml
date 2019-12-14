@@ -20,39 +20,23 @@ parts:
 
   unofficial-office-qml:
     after: [desktop-qt5]
-    source: https://github.com/sirredbeard/unofficial-office.git
+    source: .
     plugin: dump
-    override-build: |
-      sudo chmod +x unofficial-office.launcher
-      cp -v unofficial-office.launcher "$SNAPCRAFT_PART_INSTALL"
-      cp -vr snap/gui/* "$SNAPCRAFT_PART_INSTALL"
     stage-packages:
       - qmlscene
       - qml-module-qtquick2
       - qml-module-qtquick-window2
       - qml-module-qtwebengine
       - qml-module-qtquick-dialogs
-      - libblkid1
-      - libbz2-1.0
-      - libgcc1
-      - libgcrypt20
-      - libgpg-error0
-      - liblz4-1
-      - liblzma5
-      - libmount1
-      - libpcre3
-      - libselinux1
-      - libstdc++6
-      - libsystemd0
-      - libtinfo5
-      - libudev1
-      - libuuid1
-      - zlib1g
+      - nano
+      - ttf-mscorefonts-installer
+    organize:
+      unofficial-office.launcher: bin/unofficial-office.launcher
 
 apps:
   word:
     command: unofficial-office.launcher "https://www.office.com/launch/word" "Word"
-    desktop: word.desktop
+    desktop: snap/gui/word.desktop
     plugs: &plugs
       - browser-support
       - desktop
@@ -66,26 +50,26 @@ apps:
       DISABLE_WAYLAND: 1
   outlook:
     command: unofficial-office.launcher "https://outlook.live.com/mail/0/inbox" "Outlook"
-    desktop: outlook.desktop
+    desktop: snap/gui/outlook.desktop
     plugs: *plugs
     environment: *environment
   excel:
     command: unofficial-office.launcher "https://www.office.com/launch/excel" "Excel"
-    desktop: excel.desktop
+    desktop: snap/gui/excel.desktop
     plugs: *plugs
     environment: *environment
   powerpoint:
     command: unofficial-office.launcher "https://www.office.com/launch/powerpoint" "PowerPoint"
-    desktop: powerpoint.desktop
+    desktop: snap/gui/powerpoint.desktop
     plugs: *plugs
     environment: *environment
   onenote:
     command: unofficial-office.launcher "https://www.onenote.com/notebooks" "OneNote"
-    desktop: onenote.desktop
+    desktop: snap/gui/onenote.desktop
     plugs: *plugs
     environment: *environment
   onedrive:
     command: unofficial-office.launcher "https://onedrive.live.com/" "OneDrive"
-    desktop: onedrive.desktop
+    desktop: snap/gui/onedrive.desktop
     plugs: *plugs
     environment: *environment
