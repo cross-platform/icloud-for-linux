@@ -30,7 +30,6 @@ parts:
       - qml-module-qtquick-dialogs
       - libblkid1
       - libbz2-1.0
-      - libc6
       - libgcc1
       - libgcrypt20
       - libgpg-error0
