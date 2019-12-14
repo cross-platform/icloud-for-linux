@@ -2,11 +2,12 @@
 
 A set of web app wrappers, based on QtWebEngine, for the following websites:
 
-- Outlook
-- Word
-- Excel
-- PowerPoint
-- OneDrive
+- [Outlook](https://outlook.live.com/mail/0/inbox)
+- [Word](https://www.office.com/launch/word)
+- [Excel](https://www.office.com/launch/excel)
+- [PowerPoint](https://www.office.com/launch/powerpoint)
+- [OneDrive](https://onedrive.live.com/)
+- [OneNote](https://www.onenote.com/notebooks)
 
 These are links to the Office 365 web apps embeded in a minimalist web browser.
 
