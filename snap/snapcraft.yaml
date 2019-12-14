@@ -56,7 +56,7 @@ parts:
 apps:
   word:
     command: unofficial-office.launcher "https://www.office.com/launch/word" "Word"
-    desktop: snap/gui/word.desktop
+    desktop: /gui/word.desktop
     plugs: &plugs
       - browser-support
       - desktop
@@ -70,26 +70,26 @@ apps:
       DISABLE_WAYLAND: 1
   outlook:
     command: unofficial-office.launcher "https://outlook.live.com/mail/0/inbox" "Outlook"
-    desktop: snap/gui/outlook.desktop
+    desktop: /gui/outlook.desktop
     plugs: *plugs
     environment: *environment
-#  excel:
-#    command: unofficial-office.launcher "https://www.office.com/launch/excel" "Excel"
-#    desktop: snap/gui/excel.desktop
-#    plugs: *plugs
-#    environment: *environment
+  excel:
+    command: unofficial-office.launcher "https://www.office.com/launch/excel" "Excel"
+    desktop: snap/gui/excel.desktop
+    plugs: *plugs
+    environment: *environment
   powerpoint:
     command: unofficial-office.launcher "https://www.office.com/launch/powerpoint" "PowerPoint"
-    desktop: snap/gui/powerpoint.desktop
+    desktop: /gui/powerpoint.desktop
     plugs: *plugs
     environment: *environment
-  #onenote:
-    #command: unofficial-office.launcher "https://www.onenote.com/notebooks" "OneNote"
-    #desktop: snap/gui/onenote.desktop
-    #plugs: *plugs
-    #environment: *environment
-  #onedrive:
-    #command: unofficial-office.launcher "https://onedrive.live.com/" "OneDrive"
-    #desktop: snap/gui/onedrive.desktop
-    #plugs: *plugs
-    #environment: *environment
+  onenote:
+    command: unofficial-office.launcher "https://www.onenote.com/notebooks" "OneNote"
+    desktop: /gui/onenote.desktop
+    plugs: *plugs
+    environment: *environment
+  onedrive:
+    command: unofficial-office.launcher "https://onedrive.live.com/" "OneDrive"
+    desktop: /gui/onedrive.desktop
+    plugs: *plugs
+    environment: *environment
