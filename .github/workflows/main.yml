@@ -3,7 +3,7 @@ name: Push to Snapcraft
 on: [push]
 
 jobs:
-  build:
+  stable:
 
     runs-on: ubuntu-18.04
     container:
@@ -11,16 +11,72 @@ jobs:
 
     steps:
     - uses: actions/checkout@v1
-    - name: Build
+    - name: Upgrade Snapcraft container to Bionic to get qml-module-qtwebengine
       run: |
         sudo sed -i 's/xenial/bionic/g' /etc/apt/sources.list
         sudo apt update
         sudo apt -y dist-upgrade
         sudo apt-get -y install wget
-        snapcraft     
-    - name: Push snap
+    - name: Build .snap
+      run: |
+        snapcraft    
+    - name: Push .snap to Snapcraft.io
       env:
         SNAPCRAFT_LOGIN_FILE: ${{ secrets.SNAPCRAFT_LOGIN_FILE }}
-      run: 
-        echo ${SNAPCRAFT_LOGIN_FILE} | base64 --decode --ignore-garbage > snapcraft.cfg
+      run: |
+        cd snap
+        mkdir .snapcraft
+        echo ${SNAPCRAFT_LOGIN_FILE} | base64 --decode --ignore-garbage > .snapcraft/snapcraft.cfg
         snapcraft push --release=stable *.snap
+
+  beta:
+
+    runs-on: ubuntu-18.04
+    container:
+      image: snapcore/snapcraft
+
+    steps:
+    - uses: actions/checkout@v1
+    - name: Upgrade Snapcraft container to Eoan to get qml-module-qtwebengine
+      run: |
+        sudo sed -i 's/xenial/eoan/g' /etc/apt/sources.list
+        sudo apt update
+        sudo apt -y dist-upgrade
+        sudo apt-get -y install wget
+    - name: Build .snap
+      run: |
+        snapcraft    
+    - name: Push .snap to Snapcraft.io
+      env:
+        SNAPCRAFT_LOGIN_FILE: ${{ secrets.SNAPCRAFT_LOGIN_FILE }}
+      run: |
+        cd snap
+        mkdir .snapcraft
+        echo ${SNAPCRAFT_LOGIN_FILE} | base64 --decode --ignore-garbage > .snapcraft/snapcraft.cfg
+        snapcraft push --release=beta *.snap
+
+  edge:
+
+    runs-on: ubuntu-18.04
+    container:
+      image: snapcore/snapcraft
+
+    steps:
+    - uses: actions/checkout@v1
+    - name: Upgrade Snapcraft container to Focal to get qml-module-qtwebengine
+      run: |
+        sudo sed -i 's/xenial/focal/g' /etc/apt/sources.list
+        sudo apt update
+        sudo apt -y dist-upgrade
+        sudo apt-get -y install wget
+    - name: Build .snap
+      run: |
+        snapcraft    
+    - name: Push .snap to Snapcraft.io
+      env:
+        SNAPCRAFT_LOGIN_FILE: ${{ secrets.SNAPCRAFT_LOGIN_FILE }}
+      run: |
+        cd snap
+        mkdir .snapcraft
+        echo ${SNAPCRAFT_LOGIN_FILE} | base64 --decode --ignore-garbage > .snapcraft/snapcraft.cfg
+        snapcraft push --release=edge *.snap
