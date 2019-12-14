@@ -2,6 +2,6 @@
 
 ![Screenshot]()
 
-![Status](https://github.com/sirredbeard/unofficial-office/workflows/push-to-snapcraft/badge.svg)
+![Status](https://github.com/sirredbeard/unofficial-office/workflows/snapcraft/badge.svg)
 
 [![Snapcraft](https://snapcraft.io/unofficial-office/badge.svg)](https://snapcraft.io/unofficial-office)
