@@ -5,4 +5,4 @@ GenericName=Word
 Comment=Word
 Type=Application
 Icon=${SNAP}/snap/gui/word.png
-Exec=unofficial-office.word
+Exec=unofficial-webapp-office.word

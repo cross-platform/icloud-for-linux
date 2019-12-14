@@ -5,4 +5,4 @@ GenericName=PowerPoint
 Comment=PowerPoint
 Type=Application
 Icon=${SNAP}/snap/gui/powerpoint.png
-Exec=unofficial-office.powerpoint
+Exec=unofficial-webapp-office.powerpoint

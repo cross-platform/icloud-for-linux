@@ -5,4 +5,4 @@ GenericName=Excel
 Comment=Excel
 Type=Application
 Icon=${SNAP}/snap/gui/excel.png
-Exec=unofficial-office.excel
+Exec=unofficial-webapp-office.excel
