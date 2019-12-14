@@ -1,6 +1,6 @@
-# Unofficial wrapper for Office 365 web apps.
+# Unofficial web app wrapper for Office 365 web apps
 
-A set of web wrappers, based on QtWebEngine, for:
+A set of web app wrappers, based on QtWebEngine, for the following websites:
 
 - Outlook
 - Word
@@ -8,11 +8,15 @@ A set of web wrappers, based on QtWebEngine, for:
 - PowerPoint
 - OneDrive
 
+These are links to the Office 365 web apps embeded in a minimalist web browser.
+
 This snap is not supported or endorsed by Microsoft, Inc.
 
 ## Download
 
+```
 snap install unofficial-webapp-office
+```
 
 [![Snap](https://snapcraft.io/static/images/badges/en/snap-store-black.svg)](https://snapcraft.io/unofficial-webapp-office)
 
