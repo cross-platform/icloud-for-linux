@@ -24,10 +24,8 @@ parts:
     plugin: dump
     override-build: |
       sudo chmod +x unofficial-office.launcher
-      mkdir "$SNAPCRAFT_PART_INSTALL"/bin
-      cp -v unofficial-office.launcher "$SNAPCRAFT_PART_INSTALL"/bin
-      mkdir "$SNAPCRAFT_PART_INSTALL"/gui
-      cp -vr snap/gui/* "$SNAPCRAFT_PART_INSTALL"/gui
+      cp -v unofficial-office.launcher "$SNAPCRAFT_PART_INSTALL"
+      cp -vr snap/gui/* "$SNAPCRAFT_PART_INSTALL"
     stage-packages:
       - qmlscene
       - qml-module-qtquick2
@@ -50,13 +48,11 @@ parts:
       - libudev1
       - libuuid1
       - zlib1g
-    organize:
-      unofficial-office.launcher: bin/
 
 apps:
   word:
     command: unofficial-office.launcher "https://www.office.com/launch/word" "Word"
-    desktop: /gui/word.desktop
+    desktop: word.desktop
     plugs: &plugs
       - browser-support
       - desktop
@@ -70,26 +66,26 @@ apps:
       DISABLE_WAYLAND: 1
   outlook:
     command: unofficial-office.launcher "https://outlook.live.com/mail/0/inbox" "Outlook"
-    desktop: /gui/outlook.desktop
+    desktop: outlook.desktop
     plugs: *plugs
     environment: *environment
   excel:
     command: unofficial-office.launcher "https://www.office.com/launch/excel" "Excel"
-    desktop: snap/gui/excel.desktop
+    desktop: excel.desktop
     plugs: *plugs
     environment: *environment
   powerpoint:
     command: unofficial-office.launcher "https://www.office.com/launch/powerpoint" "PowerPoint"
-    desktop: /gui/powerpoint.desktop
+    desktop: powerpoint.desktop
     plugs: *plugs
     environment: *environment
   onenote:
     command: unofficial-office.launcher "https://www.onenote.com/notebooks" "OneNote"
-    desktop: /gui/onenote.desktop
+    desktop: onenote.desktop
     plugs: *plugs
     environment: *environment
   onedrive:
     command: unofficial-office.launcher "https://onedrive.live.com/" "OneDrive"
-    desktop: /gui/onedrive.desktop
+    desktop: onedrive.desktop
     plugs: *plugs
     environment: *environment
