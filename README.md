@@ -9,7 +9,7 @@ A set of web app wrappers, based on QtWebEngine, for the following websites:
 - [OneDrive](https://onedrive.live.com/)
 - [OneNote](https://www.onenote.com/notebooks)
 
-These are links to the Office 365 web apps embeded in a minimalist web browser.
+These are links to the Office 365 web apps embedded in a minimalist web browser.
 
 This snap is not supported or endorsed by Microsoft, Inc.
 
