@@ -20,7 +20,7 @@ parts:
 
   unofficial-office-qml:
     after: [desktop-qt5]
-    source: .
+    source: https://github.com/sirredbeard/unofficial-office.git
     plugin: dump
     override-build: |
       sudo chmod +x unofficial-office.launcher
