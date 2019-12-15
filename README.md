@@ -187,7 +187,7 @@ Then we must do something odd. Even though we are running on an Ubuntu 18.04 VM 
         sudo apt -y dist-upgrade
 ```
 
-With our GitHub repo checked out and dumped, our container upgraded to Ubuntu 18.04 (only takes about 2-3 minutes on average), we then build our snap with snapcraft. Snapcraft will parse snapcraft.yaml, spin up a VM using [Multipass](https://multipass.run/), assmble the parts of the app we defined in the order we specified, install all necessary dependencies, and create a containerized app with clearly defined plugs into our Linux environment:
+With our GitHub repo checked out and dumped, our container upgraded to Ubuntu 18.04 (only takes about 2-3 minutes on average), we then build our snap with snapcraft. Snapcraft will parse snapcraft.yaml, spin up a VM using [Multipass](https://multipass.run/), assmble the parts of the app we defined in the order we specified, install all necessary dependencies, and create a containerized app with clearly defined plugs into our Linux environment. We run snapcraft the run task which passes the command to the shell of the GitHub Action VM.
 
 ```
     - name: Build .snap
@@ -195,9 +195,21 @@ With our GitHub repo checked out and dumped, our container upgraded to Ubuntu 18
         snapcraft    
 ```
 
-Next, we have to push our .snap file to the Snapcraft store. This is normally done with a key stored in your snapcraft config file after logging into Snapcraft. GitHub Actions spins up a new VM on each build and while there are ways to persist files between VM instances, lets set that aside for the moment. What we can here though, rather than having our encrypted key floating aroung on VMs in between builds, is to login to the Snapcraft Store on an existing Ubuntu device, export the snapcraft config file containing our key, [convert it to base64 string](https://linux.die.net/man/1/base64), and save that text as [a secret in our GitHub Actions](https://help.github.com/en/actions/automating-your-workflow-with-github-actions/creating-and-using-encrypted-secrets). Note this is not saved anywhere in our GitHub repository itself but in the GitHub Actions settings protected with multi-factor authentication.
+Note: snapcraft is here because we are using the Snapcraft Docker container to build in. Otherwise you would need to install it using `$ snap install snapcraft`.
 
-We import that secret as an environmental variable consumable in bash just like any other environment variable in the env section of the related job. We then echo that environmental variable back through base64 and save it as a new snapcraft config file in our VM containing our key before pushing to the Store. Snapcraft grabs the key and pushes our snap to the Snapcraft Store.
+Next, we have to push our .snap file to the [Snapcraft.io](https://snapcraft.io) store. This is normally done with a key stored in a local snapcraft.cfg file after logging into Snapcraft on the terminal. But GitHub Actions spins up a new VM on each build and while there are ways to persist files between VM instances, lets set that aside for the moment. What we can here though, rather than having our encrypted key floating around on VMs in-between builds, is to login to the Snapcraft Store on an existing Ubuntu device, export the snapcraft.cfg file containing our key, [convert it to base64 string](https://linux.die.net/man/1/base64), and save that text as [a secret in our GitHub Actions](https://help.github.com/en/actions/automating-your-workflow-with-github-actions/creating-and-using-encrypted-secrets) in a way to be can retrieved and decoded on each run. Note the config file and it's key is not saved anywhere in our GitHub repository itself but in the GitHub Actions settings protected with multi-factor authentication.
+
+Note: If your fork this project and want to push to Snapcraft you will need to generate your own config file, copy to your keyboard, and then into GitHub actions:
+
+```
+snapcraft login
+snapcraft export-login snapcraft.login
+base64 snapcraft.login | xsel --clipboard
+```
+
+You will also need to reserve a different name from unofficial-webapp-office in the Snapcraft file.
+
+We import the base64 string secret as an environmental variable consumable in shell script just like any other environment variable. This is done in the env section of the related job. We then echo that environmental variable back through base64 and save it as a new snapcraft config file in our VM containing our key before pushing to the Store. Snapcraft grabs the key and pushes our snap directly to the Snapcraft Store.
 
 ```
     - name: Push .snap to Snapcraft.io
