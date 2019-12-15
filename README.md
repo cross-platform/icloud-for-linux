@@ -52,11 +52,11 @@ exec "$SNAP/bin/desktop-launch" "qmlscene" "$1" "$2" "$SNAP/unofficial-webapp-of
 
 ```
 
-It sets some variables and then calls a desktop launcher app supplied in a helper kit by the Snapcraft team for running Qt-based apps inside snaps. Similar kits exist for GTK-based apps.
+The shell script sets some variables and then calls a desktop launcher binary app supplied by a helper kit from the Snapcraft team for running Qt-based GUI desktop apps inside snaps. A [snap](https://snapcraft.io/docs/getting-started) is a Linux app packaged in a container with the app and all its dependencies, including helper apps like this one. A snap is [built using a Snapcraft file](https://snapcraft.io/docs/snapcraft-overview), which is written in [YAML](https://snapcraft.io/docs/snapcraft-format). The snap is then built and pushed to the [Snap store](https://snapcraft.io/store) [using a command-line tool](https://snapcraft.io/docs/releasing-your-app) called snapcraft.
 
-Here is the relevant YAML in the [Snapcraft file](https://github.com/sirredbeard/unofficial-webapp-office/blob/master/snap/snapcraft.yaml) where the helper kit is installed into the snap. A snap is a container with our app and all its dependencies, including helper apps like this one. This shell script will run inside our container, so the paths it usesare is relative to the snap using $SNAP.
+Note that the launcher shell script will run inside our container, so the paths it uses is set relative to the snap using $SNAP and will be interpreted on the fly when the snapped application is run.
 
-The helper kit is built using the [make plugin](https://snapcraft.io/docs/make-plugin):
+A similar GUI helper kit exists for [GTK-based apps](https://github.com/ubuntu/snapcraft-desktop-helpers/tree/master/gtk). Here is the relevant YAML in the [Snapcraft file](https://github.com/sirredbeard/unofficial-webapp-office/blob/master/snap/snapcraft.yaml) where the helper kit is installed into the snap:
 
 ```
 parts:
@@ -67,9 +67,15 @@ parts:
     make-parameters: ["FLAVOR=qt5"]
 ```
 
-Back in our original shell script desktop launcher is used to call qmlscene. qmlscene is part of the Qt UI development toolkit. qmlscene is used to run mock-ups of QML files, the Qt markup language. There is no separate C++ (or Python) code here you would normally expect to see with a full-fledged Qt application. The logic of the app is embedded in JavaScript embedded in the QML and how Snapcraft itself simply works. qmlscene is called with --scaling to enable scaling on HiDPI displays.
+The helper kit is built directly from the upstream GitHub repository using the [make plugin](https://snapcraft.io/docs/make-plugin).
 
-We tell qmlscene to parse [unofficial-webapp-office.qml](https://github.com/sirredbeard/unofficial-webapp-office/blob/master/unofficial-webapp-office.qml). The QML draws a basic window, embeds a WebKit engine in it (these dependencies are fulfilled by the staged packages in snapcraft.yaml), handles two command-line variables passed to it: the name of the website and it's URL:
+Back in our original shell script desktop-launch is used to call [qmlscene](https://doc.qt.io/qt-5/qtquick-qmlscene.html). qmlscene is part of the [Qt UI development toolkit](https://www.qt.io/):
+
+`exec "$SNAP/bin/desktop-launch" "qmlscene" "$1" "$2" "$SNAP/unofficial-webapp-office.qml" --scaling`
+
+qmlscene is used to run mock-ups of QML files, the Qt markup language. There is no separate C++ (or Python) code here you would normally expect to see with a full-fledged Qt application. The logic of the app is embedded in [JavaScript embedded in the QML](https://doc.qt.io/qt-5/qtqml-javascript-expressions.html) and how Snapcraft itself simply works. qmlscene is called with --scaling to enable scaling on HiDPI displays.
+
+The shell script tells qmlscene to parse QML file [unofficial-webapp-office.qml](https://github.com/sirredbeard/unofficial-webapp-office/blob/master/unofficial-webapp-office.qml). The QML draws a basic window, embeds a WebKit engine in it (these Qt dependencies are fulfilled by the staged packages in our [Snapcraft file](https://github.com/sirredbeard/unofficial-webapp-office/blob/master/snap/snapcraft.yaml)), handles two command-line variables passed to it: the name of the website and it's URL:
 
 ```
 Window {
@@ -101,9 +107,9 @@ Some JavaScript (currently a bit cumbersome) determines whether to open clicked 
 
 ```
 
-The creation of the individual web apps is then handled by Snapcraft itself. For each web app an app is declared in the snap with a corresponding .desktop file (which itself has a corresponding icon) and app, specific command-line arguments, for example `OneDrive` and `https://onedrive.live.com/`.
+The creation of the individual web apps is then handled by Snapcraft itself when the snap is build. For each web app an app is declared in the snap with a corresponding .desktop file (which itself has a corresponding icon) and app, specific command-line arguments, for example `OneDrive` and `https://onedrive.live.com/`.
 
-After the Qt helper kit is installed, the contents of our GitHub repo are dumped into the snap build environment by use of the dump plugin and necessary Qt dependencies installed by their Debian package names using stage-packages:
+Taking a look [in our Snapcaft file](https://github.com/sirredbeard/unofficial-webapp-office/blob/master/snap/snapcraft.yaml), after the Qt GUI desktop helper kit is installed, the contents of our GitHub repo are then dumped into the snap build environment by use of the [dump plugin](https://snapcraft.io/docs/dump-plugin) and necessary Qt dependencies installed by their Debian package names using [stage-packages](https://snapcraft.io/docs/build-and-staging-dependencies):
 
 ```
   unofficial-webapp-office-qml:
@@ -120,9 +126,9 @@ After the Qt helper kit is installed, the contents of our GitHub repo are dumped
       unofficial-webapp-office.launcher: bin/unofficial-webapp-office.launcher
 ```
 
-Organize moves our binary into place. The [gui folder](https://github.com/sirredbeard/unofficial-webapp-office/tree/master/snap/gui) with its .desktop files and .png icon files will make its way over by virtue of being in the snap folder. Notice how only things declared, moved, or in specific places make it into the snap with our app.
+[Organize](https://snapcraft.io/docs/snapcraft-parts-metadata) moves our binary into place and is a lot cleaner than a lot of `mkdir` and `mv`. The [gui folder](https://github.com/sirredbeard/unofficial-webapp-office/tree/master/snap/gui) with its .desktop files and .png icon files will make its way over by virtue of being in the snap folder. Notice how only things declared, moved, or in specific places make it into the snap with our app.
 
-We then 'create' our individual apps:
+We then 'create' our individual apps for each of the web apps:
 
 ```
 apps:
@@ -142,9 +148,9 @@ apps:
       DISABLE_WAYLAND: 1
 ```
 
-The plugs are the features our snap needs to interact with the desktop and web, the permissions we need to give the snap. Without these plugs the snap is otherwise fully isolated by default. This allows you to define using useful categories the confines of your app which is then restricted at the kernel level by use of namespaces, cgroups, and App Armor.
+The plugs are the hooks our snap apps need to interact with the desktop and web, the permissions we need to give the snap. Without [these plugs](https://snapcraft.io/docs/supported-interfaces) the snap is [otherwise fully confined](https://snapcraft.io/docs/interface-management) by default. This allows you to define using useful categories the confines of your app which is then restricted at the kernel level by use of namespaces, cgroups, and App Armor.
 
-Thankfully creating the rest of the apps is not't as complicated, we can just * those plugs and other settings. When the app is installed the snapd daemon will move the .desktop files into place on our system, making them visible in the desktop environment. The .desktop format is a FreeDesktop standard, like systemd.
+Thankfully creating the rest of the apps is not't as complicated, we can just * those plugs and other settings. When the app is installed the snapd daemon will move the .desktop files into place on our system, making them visible in the desktop environment. The [.desktop format](https://specifications.freedesktop.org/desktop-entry-spec/latest/) is a FreeDesktop spec,
 
 ```
   outlook:
