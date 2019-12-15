@@ -107,7 +107,7 @@ Some JavaScript (currently a bit cumbersome) determines whether to open clicked 
 
 ```
 
-The creation of the individual web apps is then handled by Snapcraft itself when the snap is build. For each web app an app is declared in the snap with a corresponding .desktop file (which itself has a corresponding icon) and app, specific command-line arguments, for example `OneDrive` and `https://onedrive.live.com/`.
+The creation of the individual web apps is then handled by Snapcraft itself when the snap is built. For each web app an app is declared in the snap with a corresponding .desktop file (which itself has a corresponding icon) and app, specific command-line arguments, for example `OneDrive` and `https://onedrive.live.com/`.
 
 Taking a look [in our Snapcaft file](https://github.com/sirredbeard/unofficial-webapp-office/blob/master/snap/snapcraft.yaml), after the Qt GUI desktop helper kit is installed, the contents of our GitHub repo are then dumped into the snap build environment by use of the [dump plugin](https://snapcraft.io/docs/dump-plugin) and necessary Qt dependencies installed by their Debian package names using [stage-packages](https://snapcraft.io/docs/build-and-staging-dependencies):
 
@@ -150,7 +150,7 @@ apps:
 
 The plugs are the hooks our snap apps need to interact with the desktop and web, the permissions we need to give the snap. Without [these plugs](https://snapcraft.io/docs/supported-interfaces) the snap is [otherwise fully confined](https://snapcraft.io/docs/interface-management) by default. This allows you to define using useful categories the confines of your app which is then restricted at the kernel level by use of namespaces, cgroups, and App Armor.
 
-Thankfully creating the rest of the apps is not't as complicated, we can just * those plugs and other settings. When the app is installed the snapd daemon will move the .desktop files into place on our system, making them visible in the desktop environment. The [.desktop format](https://specifications.freedesktop.org/desktop-entry-spec/latest/) is a FreeDesktop spec,
+Thankfully creating the rest of the apps is not as complicated, we can just * those plugs and other settings. When the app is installed the snapd daemon will move the .desktop files into place on our system, making them visible in the desktop environment. The [.desktop format](https://specifications.freedesktop.org/desktop-entry-spec/latest/) is a FreeDesktop spec.
 
 ```
   outlook:
@@ -164,7 +164,7 @@ Snapcraft creates our individual apps, all calling [unofficial-webapp-office.lau
 
 The snap is built directly on GitHub using GitHub actions, defined [also in YAML](https://github.com/sirredbeard/unofficial-webapp-office/blob/master/.github/workflows/snapcraft.yml).
 
-The heading defines the workflow name, when the workflow will run (on a push to the repo), and set up our jobs. The primary job is called stable in anticipation of having future release levels, such as edge or beta, depending on the complexity of the app. We will run the action on an Ubuntu 18.04 VM. However, the default Ubuntu 18.04 image on GitHub Actions does not have the various mountpoints and loopback devices needed for multipass, the hypervisor that powers the snap build, by default. We can get them though by jumping into a Docker container specifically designed for building snaps from the Snapcraft team:
+The heading defines the workflow name, when the workflow will run (on a push to the repo), and set up our jobs. The primary job is called stable in anticipation of having future release levels, such as edge or beta, depending on the complexity of the app. We will run the action on an Ubuntu 18.04 VM. However, the default Ubuntu 18.04 image on GitHub Actions does not have the various mountpoints and loopback devices needed for Multipass, the hypervisor that powers the snap build, by default. We can get them though by jumping into a Docker container specifically designed for building snaps from the Snapcraft team:
 
 ```
 name: snapcraft
@@ -203,7 +203,7 @@ With our GitHub repo checked out and dumped, our container upgraded to Ubuntu 18
 
 Note: snapcraft is here because we are using the Snapcraft Docker container to build in. Otherwise you would need to install it using `$ snap install snapcraft`.
 
-Next, we have to push our .snap file to the [Snapcraft.io](https://snapcraft.io) store. This is normally done with a key stored in a local snapcraft.cfg file after logging into Snapcraft on the terminal. But GitHub Actions spins up a new VM on each build and while there are ways to persist files between VM instances, lets set that aside for the moment. What we can here though, rather than having our encrypted key floating around on VMs in-between builds, is to login to the Snapcraft Store on an existing Ubuntu device, export the snapcraft.cfg file containing our key, [convert it to base64 string](https://linux.die.net/man/1/base64), and save that text as [a secret in our GitHub Actions](https://help.github.com/en/actions/automating-your-workflow-with-github-actions/creating-and-using-encrypted-secrets) in a way to be can retrieved and decoded on each run. Note the config file and it's key is not saved anywhere in our GitHub repository itself but in the GitHub Actions settings protected with multi-factor authentication.
+Next, we have to push our .snap file to the [Snapcraft.io](https://snapcraft.io) store. This is normally done with a key stored in a local snapcraft.cfg file after logging into Snapcraft on the terminal. But GitHub Actions spins up a new VM on each build and while there are ways to persist files between VM instances, let's set that aside for the moment. What we can here though, rather than having our encrypted key floating around on VMs in-between builds, is to login to the Snapcraft Store on an existing Ubuntu device, export the snapcraft.cfg file containing our key, [convert it to base64 string](https://linux.die.net/man/1/base64), and save that text as [a secret in our GitHub Actions](https://help.github.com/en/actions/automating-your-workflow-with-github-actions/creating-and-using-encrypted-secrets) in a way to be can retrieved and decoded on each run. Note the config file and it's key is not saved anywhere in our GitHub repository itself but in the GitHub Actions settings protected with multi-factor authentication.
 
 Note: If your fork this project and want to push to Snapcraft you will need to generate your own config file, copy to your keyboard, and then into GitHub actions:
 
