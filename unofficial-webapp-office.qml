@@ -28,6 +28,10 @@ Window {
         var newWindow = windowComponent.createObject(windowParent);
         request.openIn(newWindow.webView);
       }
+      else if (request.requestedUrl.toString().includes('office365.com')) {
+        var newWindow = windowComponent.createObject(windowParent);
+        request.openIn(newWindow.webView);
+      }
       else if (request.requestedUrl.toString().includes('outlook.com')) {
         var newWindow = windowComponent.createObject(windowParent);
         request.openIn(newWindow.webView);
