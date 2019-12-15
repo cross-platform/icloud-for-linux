@@ -56,14 +56,15 @@ It sets some variables and then calls a desktop launcher app supplied in a helpe
 
 Here is the relevant YAML in the [Snapcraft file](https://github.com/sirredbeard/unofficial-webapp-office/blob/master/snap/snapcraft.yaml) where the helper kit is installed into the snap, which is simply a container with our app and all its dependencies:
 
-'''
+```
 parts:
   desktop-qt5:
     source: https://github.com/ubuntu/snapcraft-desktop-helpers.git
     source-subdir: qt
     plugin: make
     make-parameters: ["FLAVOR=qt5"]
-'''
+```
+
 This desktop launcher is used to call qmlscene. qmlscene is part of the Qt UI development toolkit. qmlscene is used to run mock-ups of QML files, the Qt markup language. There is no separate C++ (or Python) code you would normally expect to see with a full-fledged Qt application. The logic of the app is embedded in JavaScript embedded in the QML and how Snapcraft itself simply works. qmlscene is called with --scaling to enable scaling on HiDPI displays.
 
 qmlscene parses [unofficial-webapp-office.qml](https://github.com/sirredbeard/unofficial-webapp-office/blob/master/unofficial-webapp-office.qml). The QML draws a basic window, embeds a WebKit engine in it (these dependencies are fulfilled by the staged packages in snapcraft.yaml), handles two command-line variables passed to it: the name of the website and it's URL:
@@ -102,7 +103,7 @@ The creation of the individual web apps is then handled by Snapcraft itself. For
 
 After the Qt helper kit is installed, the contents of our GitHub repo are dumped into the snap build environment by use of the dump plugin and necessary Qt dependencies installed by their Debian package names using stage-packages:
 
-'''
+```
   unofficial-webapp-office-qml:
     after: [desktop-qt5]
     source: .
@@ -115,13 +116,13 @@ After the Qt helper kit is installed, the contents of our GitHub repo are dumped
       - qml-module-qtquick-dialogs
     organize:
       unofficial-webapp-office.launcher: bin/unofficial-webapp-office.launcher
-'''
+```
 
 Organize moves our binary into place. The [gui folder](https://github.com/sirredbeard/unofficial-webapp-office/tree/master/snap/gui) with its .desktop files and .png icon files will make its way over by virtue of being in the snap folder. Notice how only things declared, moved, or in specific places make it into the snap with our app.
 
 We then 'create' our individual apps:
 
-'''
+```
 apps:
   word:
     command: unofficial-webapp-office.launcher "https://www.office.com/launch/word" "Word"
@@ -137,20 +138,19 @@ apps:
       - x11
     environment: &environment
       DISABLE_WAYLAND: 1
-
-'''
+```
 
 The plugs are the features our snap needs to interact with the desktop and web, the permissions we need to give the snap. Without these plugs the snap is otherwise fully isolated by default. This allows you to define using useful categories the confines of your app which is then restricted at the kernel level by use of namespaces, cgroups, and App Armor.
 
 Thankfully creating the rest of the apps is not't as complicated, we can just * those plugs and other settings. When the app is installed the snapd daemon will move the .desktop files into place on our system, making them visible in the desktop environment. The .desktop format is a FreeDesktop standard, like systemd.
 
-'''
+```
   outlook:
     command: unofficial-webapp-office.launcher "https://outlook.live.com/mail/0/inbox" "Outlook"
     desktop: snap/gui/outlook.desktop
     plugs: *plugs
     environment: *environment
-'''
+```
 
 Snapcraft creates our individual apps, all calling [unofficial-webapp-office.launcher](https://github.com/sirredbeard/unofficial-webapp-office/blob/master/unofficial-webapp-office.launcher) with the relevant app name and URL as command line arguments, which then calls qmlscene and renders [unoffocial-webapp-office.qml](https://github.com/sirredbeard/unofficial-webapp-office/blob/master/unofficial-webapp-office.qml) giving us a minimalist web browser with our app name as the window title and URL rendered. Some simple JavaScript in the QML handles how to handle opening new Microsoft links in a new window or other links in the exte0rnal default OS browser. By referencing the respective .desktop file in our [Snapcraft file](https://github.com/sirredbeard/unofficial-webapp-office/blob/master/snap/snapcraft.yaml) and then the respective .png icon file in our [.desktop file](https://github.com/sirredbeard/unofficial-webapp-office/blob/master/snap/gui/excel.desktop) the desktop environment icon creation is handled for us.
 
@@ -158,7 +158,7 @@ The snap is built directly on GitHub using GitHub actions, defined [also in YAML
 
 The heading defines the workflow name, when the workflow will run (on a push to the repo), and set up our jobs. The primary job is called stable in anticipation of having future release levels, such as edge or beta, depending on the complexity of the app. We will run the action on an ubuntu-18.04 VM. However, the default Ubuntu 18.04 image on GitHub Actions does not have the various mountpoints and loopback devices nedded for multipass, the hypervisor that powers the snap build, by default. We can get them though by jumping into a Docker container specifically designed for building snaps from the Snapcraft team:
 
-'''
+```
 name: snapcraft
 
 on: [push]
@@ -169,7 +169,7 @@ jobs:
     runs-on: ubuntu-18.04
     container:
       image: snapcore/snapcraft
-'''
+```
 
 Our first step in the job is to checkout our GitHub repository, as we will be dropping these files directly into our snap. 
 
