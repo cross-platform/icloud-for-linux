@@ -54,7 +54,9 @@ exec "$SNAP/bin/desktop-launch" "qmlscene" "$1" "$2" "$SNAP/unofficial-webapp-of
 
 It sets some variables and then calls a desktop launcher app supplied in a helper kit by the Snapcraft team for running Qt-based apps inside snaps. Similar kits exist for GTK-based apps.
 
-Here is the relevant YAML in the [Snapcraft file](https://github.com/sirredbeard/unofficial-webapp-office/blob/master/snap/snapcraft.yaml) where the helper kit is installed into the snap, which is simply a container with our app and all its dependencies:
+Here is the relevant YAML in the [Snapcraft file](https://github.com/sirredbeard/unofficial-webapp-office/blob/master/snap/snapcraft.yaml) where the helper kit is installed into the snap. A snap is a container with our app and all its dependencies, including helper apps like this one. This shell script will run inside our container, so the paths it usesare is relative to the snap using $SNAP.
+
+The helper kit is built using the [make plugin](https://snapcraft.io/docs/make-plugin):
 
 ```
 parts:
@@ -65,9 +67,9 @@ parts:
     make-parameters: ["FLAVOR=qt5"]
 ```
 
-This desktop launcher is used to call qmlscene. qmlscene is part of the Qt UI development toolkit. qmlscene is used to run mock-ups of QML files, the Qt markup language. There is no separate C++ (or Python) code you would normally expect to see with a full-fledged Qt application. The logic of the app is embedded in JavaScript embedded in the QML and how Snapcraft itself simply works. qmlscene is called with --scaling to enable scaling on HiDPI displays.
+Back in our original shell script desktop launcher is used to call qmlscene. qmlscene is part of the Qt UI development toolkit. qmlscene is used to run mock-ups of QML files, the Qt markup language. There is no separate C++ (or Python) code here you would normally expect to see with a full-fledged Qt application. The logic of the app is embedded in JavaScript embedded in the QML and how Snapcraft itself simply works. qmlscene is called with --scaling to enable scaling on HiDPI displays.
 
-qmlscene parses [unofficial-webapp-office.qml](https://github.com/sirredbeard/unofficial-webapp-office/blob/master/unofficial-webapp-office.qml). The QML draws a basic window, embeds a WebKit engine in it (these dependencies are fulfilled by the staged packages in snapcraft.yaml), handles two command-line variables passed to it: the name of the website and it's URL:
+We tell qmlscene to parse [unofficial-webapp-office.qml](https://github.com/sirredbeard/unofficial-webapp-office/blob/master/unofficial-webapp-office.qml). The QML draws a basic window, embeds a WebKit engine in it (these dependencies are fulfilled by the staged packages in snapcraft.yaml), handles two command-line variables passed to it: the name of the website and it's URL:
 
 ```
 Window {
@@ -185,7 +187,7 @@ Then we must do something odd. Even though we are running on an Ubuntu 18.04 VM 
         sudo apt -y dist-upgrade
 ```
 
-With our GitHub repo checked out and dumped, our container upgraded to Ubuntu 18.04 (only takes about 2-3 minutes on average), we then build our snap with snapcraft. Snapcraft will parse snapcraft.yaml, spin up a VM using multipass, assmble the parts of the app we defined in the order we specified, install all necessary dependencies, and create a containerized app with clearly defined plugs into our Linux environment:
+With our GitHub repo checked out and dumped, our container upgraded to Ubuntu 18.04 (only takes about 2-3 minutes on average), we then build our snap with snapcraft. Snapcraft will parse snapcraft.yaml, spin up a VM using [Multipass](https://multipass.run/), assmble the parts of the app we defined in the order we specified, install all necessary dependencies, and create a containerized app with clearly defined plugs into our Linux environment:
 
 ```
     - name: Build .snap
@@ -206,6 +208,9 @@ We import that secret as an environmental variable consumable in bash just like 
         echo ${SNAPCRAFT_LOGIN_FILE} | base64 --decode --ignore-garbage > .snapcraft/snapcraft.cfg
         snapcraft push --release=stable *.snap
 ```
+
+* [Snapcraft Documentation](https://snapcraft.io/docs)
+* [GitHub Actions](https://help.github.com/en/actions)
 
 ### Build Status
 
