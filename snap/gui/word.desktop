@@ -6,3 +6,6 @@ Comment=Word
 Type=Application
 Icon=${SNAP}/snap/gui/word.png
 Exec=unofficial-webapp-office.word
+Terminal=false
+Keyworks=Word,document,doc
+Categories=Office,WordProcessor,Qt

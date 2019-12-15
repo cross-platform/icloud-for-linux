@@ -6,3 +6,6 @@ Comment=Excel
 Type=Application
 Icon=${SNAP}/snap/gui/excel.png
 Exec=unofficial-webapp-office.excel
+Terminal=false
+Keyworks=Excel,spreadsheet
+Categories=Office,Spreadsheet

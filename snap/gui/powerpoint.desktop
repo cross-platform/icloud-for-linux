@@ -6,3 +6,6 @@ Comment=PowerPoint
 Type=Application
 Icon=${SNAP}/snap/gui/powerpoint.png
 Exec=unofficial-webapp-office.powerpoint
+Terminal=false
+Keyworks=PowerPoint,presentation,ppt
+Categories=Office,Presentation,Qt
