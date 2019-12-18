@@ -25,6 +25,8 @@ Window {
       }
     }
 
+    profile.httpUserAgent: "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:71.0) Gecko/20100101 Firefox/71.0"
+
     profile.onDownloadRequested: function(download) {
       download.accept();
     }
