@@ -7,5 +7,5 @@ Type=Application
 Icon=${SNAP}/snap/gui/outlook.png
 Exec=unofficial-webapp-office.outlook
 Terminal=false
-Keyworks=Outlook,mail,email,calendar,contacts
-Categories=Office,Email,Calendar,ContactManagement,Qt
+Keywords=Outlook,mail,email,calendar,contacts
+Categories=Office;Email;Calendar;ContactManagement;Qt
