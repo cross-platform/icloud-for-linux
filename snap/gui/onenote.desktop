@@ -7,5 +7,5 @@ Type=Application
 Icon=${SNAP}/snap/gui/onenote.png
 Exec=unofficial-webapp-office.onenote
 Terminal=false
-Keyworks=OneNote,note,notes,notepad
-Categories=Office,ProjectManagement,Qt
+Keywords=OneNote,note,notes,notepad
+Categories=Office;ProjectManagement;Qt

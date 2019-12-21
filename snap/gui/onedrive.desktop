@@ -7,5 +7,5 @@ Type=Application
 Icon=${SNAP}/snap/gui/onedrive.png
 Exec=unofficial-webapp-office.onedrive
 Terminal=false
-Keyworks=OneDrive,files,cloud,photos
-Categories=Office,FileTransfer,Qt
+Keywords=OneDrive,files,cloud,photos
+Categories=Office;FileTransfer;Qt
