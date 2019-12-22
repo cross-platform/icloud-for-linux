@@ -47,7 +47,11 @@ Window {
       else if (request.requestedUrl.toString().includes('onenote.com')) {
         var newWindow = windowComponent.createObject(windowParent);
         request.openIn(newWindow.webView);
-      }                     
+      }
+      else if (request.requestedUrl.toString().includes('sway.office.com')) {
+        var newWindow = windowComponent.createObject(windowParent);
+        request.openIn(newWindow.webView);
+      }      
       else {
         Qt.openUrlExternally(request.requestedUrl)
       }    
