@@ -15,6 +15,8 @@ Window {
 
     url: Qt.application.arguments[1]
 
+    // This whole section needs to be re-structured into something easier to maintain:
+    
     onNewViewRequested: function(request) {
       if (request.requestedUrl.toString().includes('live.com')) {
         var newWindow = windowComponent.createObject(windowParent);
@@ -24,6 +26,10 @@ Window {
         var newWindow = windowComponent.createObject(windowParent);
         request.openIn(newWindow.webView);
       }
+      else if (request.requestedUrl.toString().includes('1drv.ms')) {
+        var newWindow = windowComponent.createObject(windowParent);
+        request.openIn(newWindow.webView);
+      }      
       else if (request.requestedUrl.toString().includes('office.com')) {
         var newWindow = windowComponent.createObject(windowParent);
         request.openIn(newWindow.webView);
