@@ -1,5 +1,5 @@
 name: icloud-for-linux
-version: '0.4'
+version: '0.5'
 summary: iCloud for Linux
 description: iCloud for Linux
 
@@ -25,6 +25,7 @@ parts:
     stage-packages:
       - qmlscene
       - qml-module-qtquick2
+      - qml-module-qtquick-controls
       - qml-module-qtquick-window2
       - qml-module-qtwebengine
       - qml-module-qtquick-dialogs
