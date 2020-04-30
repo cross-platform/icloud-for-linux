@@ -1,0 +1,31 @@
+name: snapcraft
+
+on:
+  push:
+    branches:
+      - development
+
+jobs:
+  stable:
+
+    runs-on: ubuntu-18.04
+    container:
+      image: snapcore/snapcraft
+
+    steps:
+    - uses: actions/checkout@v1
+    - name: Upgrade Snapcraft Docker container to Bionic to get qml-module-qtwebengine
+      run: |
+        sudo sed -i 's/xenial/bionic/g' /etc/apt/sources.list
+        sudo apt update
+        sudo apt -y dist-upgrade
+    - name: Build .snap
+      run: |
+        snapcraft    
+    - name: Push .snap to Snapcraft.io
+      env:
+        SNAPCRAFT_LOGIN_FILE: ${{ secrets.SNAPCRAFT_LOGIN_FILE }}
+      run: |
+        mkdir .snapcraft
+        echo ${SNAPCRAFT_LOGIN_FILE} | base64 --decode --ignore-garbage > .snapcraft/snapcraft.cfg
+        snapcraft push --release=edge *.snap
