@@ -19,7 +19,7 @@ jobs:
         sudo sed -i 's/bionic/focal/g' /etc/apt/sources.list
         sudo apt update
         sudo apt -y dist-upgrade
-        sudo apt -y install dpkg-dev
+        sudo apt -y install dpkg-dev make
     - name: Build .snap
       run: |
         snapcraft    
