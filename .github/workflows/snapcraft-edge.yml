@@ -4,6 +4,8 @@ on:
   push:
     branches:
       - development
+  schedule:
+    - cron:  '15 19 * * *'
 
 jobs:
   stable:
