@@ -25,7 +25,7 @@ snap install unofficial-webapp-office
 
 ## Notes
 
-Check "Keep me signed in" to avoid having to sign into each web app individually.
+Check "Keep me signed in" to avoid having to sign into each webapp individually.
 
 ## Screenshot
 
