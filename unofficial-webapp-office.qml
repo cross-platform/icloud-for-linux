@@ -1,5 +1,6 @@
 import QtQuick 2.9
 import QtQuick.Window 2.3
+import QtQuick.Controls 1.0
 import QtWebEngine 1.5
 
 Window {
@@ -12,6 +13,20 @@ Window {
     id: windowParent
     anchors.fill: parent
     zoomFactor: 1.0
+    
+    Action {
+        shortcut: "Ctrl+-"
+        onTriggered: windowParent.zoomFactor -= 0.1;
+    }
+    Action {
+        shortcut: "Ctrl++"
+        onTriggered: windowParent.zoomFactor += 0.1;
+    }
+    Action {
+        shortcut: "Ctrl+="
+        onTriggered: windowParent.zoomFactor += 0.1;
+    }
+
 
     url: Qt.application.arguments[1]
 
@@ -20,6 +35,7 @@ Window {
     onNewViewRequested: function(request) {
       if (request.requestedUrl.toString().includes('live.com')) {
         var newWindow = windowComponent.createObject(windowParent);
+        newWindow.webView.zoomFactor = windowParent.zoomFactor / 0.8
         request.openIn(newWindow.webView);
       }
       else if (request.requestedUrl.toString().includes('microsoft.com')) {
@@ -81,6 +97,20 @@ Window {
     WebEngineView {
       id: webView_
       anchors.fill: parent
+      
+      Action {
+          shortcut: "Ctrl+-"
+          onTriggered: webView_.zoomFactor -= 0.1;
+      }
+      Action {
+          shortcut: "Ctrl++"
+          onTriggered: webView_.zoomFactor += 0.1;
+      }
+      Action {
+          shortcut: "Ctrl+="
+          onTriggered: webView_.zoomFactor += 0.1;
+      }      
+      
     }
   }
 }

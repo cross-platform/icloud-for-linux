@@ -10,4 +10,10 @@ export APP_ID=unofficial-webapp-office
 # Remove problematic environment variable
 unset QT_QPA_PLATFORM
 
+# Suppress "unsupported browser" warnings
+# if [ ! -d $SNAP_USER_DATA/.local/share/QtProject ]; then
+#  mkdir -p $SNAP_USER_DATA/.local/share
+#  cp -r $SNAP/share/QtProject $SNAP_USER_DATA/.local/share
+# fi
+
 exec "$SNAP/bin/desktop-launch" "qmlscene" "$1" "$2" "$SNAP/unofficial-webapp-office.qml" --scaling

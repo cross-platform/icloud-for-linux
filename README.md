@@ -1,6 +1,6 @@
-# Unofficial web app wrapper for Office 365 web apps
+# Unofficial webapp wrapper for Office 365 webapps
 
-A set of web app wrappers, based on QtWebEngine, for the following websites:
+A set of webapp wrappers, based on QtWebEngine, for the following websites:
 
 - [Outlook](https://outlook.live.com/mail/0/inbox)
 - [Word](https://www.office.com/launch/word)
@@ -9,7 +9,7 @@ A set of web app wrappers, based on QtWebEngine, for the following websites:
 - [OneDrive](https://onedrive.live.com/)
 - [OneNote](https://www.onenote.com/notebooks)
 
-These are links to the Office 365 web apps embedded in a minimalist web browser.
+These are links to the Office 365 webapps embedded in a minimalist web browser.
 
 This snap is not supported by or endorsed by Microsoft, Inc.
 
@@ -25,7 +25,7 @@ snap install unofficial-webapp-office
 
 ## Notes
 
-Check "Keep me signed in" to avoid having to sign into each web app individually.
+Check "Keep me signed in" to avoid having to sign into each webapp individually.
 
 ## Screenshot
 
