@@ -8,7 +8,7 @@ on:
     - cron:  '15 19 * * *'
 
 jobs:
-  stable:
+  edge:
 
     runs-on: ubuntu-18.04
     container:
