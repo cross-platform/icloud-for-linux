@@ -27,6 +27,7 @@ parts:
       - qml-module-qtquick-window2
       - qml-module-qtwebengine
       - qml-module-qtquick-dialogs
+      - libqt5quick5
     organize:
       unofficial-webapp-office.launcher: bin/unofficial-webapp-office.launcher
 
