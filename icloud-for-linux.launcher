@@ -7,6 +7,9 @@ export OXIDE_NO_SANDBOX=1
 # Explicitly set APP_ID.
 export APP_ID=icloud-for-linux
 
+# Enable Qt HiDPI support
+export QT_AUTO_SCREEN_SCALE_FACTOR=1
+
 # Remove problematic environment variable
 unset QT_QPA_PLATFORM
 
