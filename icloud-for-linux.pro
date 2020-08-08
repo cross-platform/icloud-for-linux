@@ -1,3 +1,8 @@
 QT += quick
-SOURCES += icloud-for-linux.cpp
-RESOURCES += icloud-for-linux.qrc
+SOURCES += src/icloud-for-linux.cpp
+RESOURCES += src/icloud-for-linux.qrc
+
+target.files += icloud-for-linux
+target.path += /bin
+INSTALLS += target
+

@@ -4,5 +4,6 @@ Name=iCloud Calendar
 GenericName=iCloud Calendar
 Comment=iCloud Calendar
 Type=Application
-Icon=${SNAP}/snap/gui/calendar.png
+Icon=${SNAP}/meta/gui/calendar.png
 Exec=icloud-for-linux.calendar
+StartupWMClass=icloud-for-linux.calendar

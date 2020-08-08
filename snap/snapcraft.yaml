@@ -18,24 +18,26 @@ parts:
     plugin: make
     make-parameters: ["FLAVOR=qt5"]
 
-  icloud-for-linux-qml:
+  icloud-for-linux:
     after: [desktop-qt5]
     source: .
-    plugin: dump
+    plugin: qmake
+    build-packages:
+      - qtdeclarative5-dev
     stage-packages:
-      #- qtdeclarative5-dev
       - qml-module-qtquick2
       - qml-module-qtquick-controls
       - qml-module-qtquick-window2
       - qml-module-qtwebengine
       - qml-module-qtquick-dialogs
-    organize:
-      icloud-for-linux.launcher: bin/icloud-for-linux.launcher
+
+  dump:
+    source: dump
+    plugin: dump
 
 apps:
   mail:
     command: icloud-for-linux.launcher mail "iCloud Mail"
-    desktop: snap/gui/mail.desktop
     plugs: &plugs
       - browser-support
       - desktop
@@ -49,56 +51,45 @@ apps:
       DISABLE_WAYLAND: 1
   contacts:
     command: icloud-for-linux.launcher contacts "iCloud Contacts"
-    desktop: snap/gui/contacts.desktop
     plugs: *plugs
     environment: *environment
   calendar:
     command: icloud-for-linux.launcher calendar "iCloud Calendar"
-    desktop: snap/gui/calendar.desktop
     plugs: *plugs
     environment: *environment
   photos:
     command: icloud-for-linux.launcher photos "iCloud Photos"
-    desktop: snap/gui/photos.desktop
     plugs: *plugs
     environment: *environment
   drive:
     command: icloud-for-linux.launcher iclouddrive "iCloud Drive"
-    desktop: snap/gui/drive.desktop
     plugs: *plugs
     environment: *environment
   notes:
     command: icloud-for-linux.launcher notes "iCloud Notes"
-    desktop: snap/gui/notes.desktop
     plugs: *plugs
     environment: *environment
   reminders:
     command: icloud-for-linux.launcher reminders "iCloud Reminders"
-    desktop: snap/gui/reminders.desktop
     plugs: *plugs
     environment: *environment
   pages:
     command: icloud-for-linux.launcher pages "iCloud Pages"
-    desktop: snap/gui/pages.desktop
     plugs: *plugs
     environment: *environment
   numbers:
     command: icloud-for-linux.launcher numbers "iCloud Numbers"
-    desktop: snap/gui/numbers.desktop
     plugs: *plugs
     environment: *environment
   keynote:
     command: icloud-for-linux.launcher keynote "iCloud Keynote"
-    desktop: snap/gui/keynote.desktop
     plugs: *plugs
     environment: *environment
   find-my-friends:
     command: icloud-for-linux.launcher fmf "iCloud Find My Friends"
-    desktop: snap/gui/find-my-friends.desktop
     plugs: *plugs
     environment: *environment
   find-my-iphone:
     command: icloud-for-linux.launcher find "iCloud Find My iPhone"
-    desktop: snap/gui/find-my-iphone.desktop
     plugs: *plugs
     environment: *environment
