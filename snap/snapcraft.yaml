@@ -49,6 +49,7 @@ apps:
       - x11
     environment: &environment
       DISABLE_WAYLAND: 1
+      QTWEBENGINE_DISABLE_SANDBOX: 1
   contacts:
     command: icloud-for-linux.launcher contacts "iCloud Contacts"
     plugs: *plugs
