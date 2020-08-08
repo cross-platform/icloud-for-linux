@@ -23,7 +23,7 @@ parts:
     source: .
     plugin: dump
     stage-packages:
-      - qmlscene
+      #- qtdeclarative5-dev
       - qml-module-qtquick2
       - qml-module-qtquick-controls
       - qml-module-qtquick-window2

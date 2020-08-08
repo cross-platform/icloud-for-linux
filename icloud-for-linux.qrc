@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/">
+        <file>icloud-for-linux.qml</file>
+    </qresource>
+</RCC>
