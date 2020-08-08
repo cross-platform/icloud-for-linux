@@ -4,5 +4,6 @@ Name=iCloud Numbers
 GenericName=iCloud Numbers
 Comment=iCloud Numbers
 Type=Application
-Icon=${SNAP}/snap/gui/numbers.png
+Icon=${SNAP}/meta/gui/numbers.png
 Exec=icloud-for-linux.numbers
+StartupWMClass=icloud-for-linux.numbers

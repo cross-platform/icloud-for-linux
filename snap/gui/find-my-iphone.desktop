@@ -4,5 +4,6 @@ Name=iCloud Find My iPhone
 GenericName=iCloud Find My iPhone
 Comment=iCloud Find My iPhone
 Type=Application
-Icon=${SNAP}/snap/gui/find-my-iphone.png
+Icon=${SNAP}/meta/gui/find-my-iphone.png
 Exec=icloud-for-linux.find-my-iphone
+StartupWMClass=icloud-for-linux.find

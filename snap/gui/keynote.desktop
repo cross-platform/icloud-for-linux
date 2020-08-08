@@ -4,5 +4,6 @@ Name=iCloud Keynote
 GenericName=iCloud Keynote
 Comment=iCloud Keynote
 Type=Application
-Icon=${SNAP}/snap/gui/keynote.png
+Icon=${SNAP}/meta/gui/keynote.png
 Exec=icloud-for-linux.keynote
+StartupWMClass=icloud-for-linux.keynote

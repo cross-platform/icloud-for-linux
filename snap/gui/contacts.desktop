@@ -4,5 +4,6 @@ Name=iCloud Contacts
 GenericName=iCloud Contacts
 Comment=iCloud Contacts
 Type=Application
-Icon=${SNAP}/snap/gui/contacts.png
+Icon=${SNAP}/meta/gui/contacts.png
 Exec=icloud-for-linux.contacts
+StartupWMClass=icloud-for-linux.contacts
