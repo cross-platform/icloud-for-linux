@@ -11,14 +11,14 @@ export APP_ID=icloud-for-linux
 unset QT_QPA_PLATFORM
 
 # Suppress "unsupported browser" warnings
-if [ ! -d $SNAP_USER_DATA/.local/share/icloud-for-linux ]; then
+if [ ! -d $SNAP_USER_DATA/.local/share/QtProject ]; then
   mkdir -p $SNAP_USER_DATA/.local/share
-  cp -r $SNAP/share/icloud-for-linux $SNAP_USER_DATA/.local/share
+  cp -r $SNAP/share/QtProject $SNAP_USER_DATA/.local/share
 fi
 
 # Share config across all apps
 if [ ! -d $SNAP_USER_DATA/.local/share/icloud-for-linux.$1 ]; then
-  ln -s $SNAP_USER_DATA/.local/share/icloud-for-linux $SNAP_USER_DATA/.local/share/icloud-for-linux.$1
+  ln -s $SNAP_USER_DATA/.local/share/QtProject/QtQmlViewer $SNAP_USER_DATA/.local/share/icloud-for-linux.$1
 fi
 
 exec "$SNAP/bin/desktop-launch" "icloud-for-linux" "$1" "$2"
