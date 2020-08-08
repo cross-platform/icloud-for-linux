@@ -10,8 +10,7 @@ if [ ! -d $SNAP_USER_DATA/.local/share/QtProject ]; then
 fi
 
 # Share config across all apps
-if [ ! -d $SNAP_USER_DATA/.local/share/icloud-for-linux.$1 ]; then
-  ln -s $SNAP_USER_DATA/.local/share/QtProject/QtQmlViewer $SNAP_USER_DATA/.local/share/icloud-for-linux.$1
-fi
+rm -rf $SNAP_USER_DATA/.local/share/icloud-for-linux.$1
+ln -s QtProject/QtQmlViewer $SNAP_USER_DATA/.local/share/icloud-for-linux.$1
 
 exec "$SNAP/bin/desktop-launch" "icloud-for-linux" "$1" "$2"
