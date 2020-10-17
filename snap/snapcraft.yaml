@@ -25,7 +25,6 @@ parts:
     build-packages:
       - qtdeclarative5-dev
     stage-packages:
-      - qmlscene
       - qml-module-qtquick2
       - qml-module-qtquick-controls
       - qml-module-qtquick-window2
