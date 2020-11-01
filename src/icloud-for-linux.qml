@@ -49,6 +49,7 @@ Window {
   }
 
   property Component windowComponent: Window {
+    id: windowComponent_
     title: Qt.application.arguments[2]
     width: 1000
     height: 600
@@ -73,6 +74,10 @@ Window {
       Action {
           shortcut: "Ctrl+="
           onTriggered: webView_.zoomFactor += 0.1;
+      }
+    
+      onWindowCloseRequested: function() {
+        windowComponent_.close()
       }
     }
   }
