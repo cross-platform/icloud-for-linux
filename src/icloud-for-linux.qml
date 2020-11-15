@@ -4,7 +4,7 @@ import QtQuick.Window 2.3
 import QtWebEngine 1.5
 
 Window {
-  title: Qt.application.arguments[2]
+  title: "iCloud " + Qt.application.arguments[2]
   width: 1000
   height: 600
   visible: true

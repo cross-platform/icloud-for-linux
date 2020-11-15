@@ -5,7 +5,7 @@ description: iCloud for Linux
 
 grade: stable
 confinement: strict
-base: core18
+base: core20
 
 layout:
   /usr/share/qt5:
@@ -21,7 +21,12 @@ parts:
   icloud-for-linux:
     after: [desktop-qt5]
     source: .
-    plugin: qmake
+    plugin: make
+    override-build: |
+      set -eux
+      qmake -set prefix $SNAPCRAFT_PART_INSTALL
+      qmake
+      snapcraftctl build
     build-packages:
       - qtdeclarative5-dev
     stage-packages:
@@ -39,7 +44,7 @@ parts:
 
 apps:
   mail:
-    command: icloud-for-linux.launcher mail "iCloud Mail"
+    command: bin/icloud-for-linux.launcher mail Mail
     plugs: &plugs
       - browser-support
       - desktop
@@ -53,46 +58,46 @@ apps:
       DISABLE_WAYLAND: 1
       QTWEBENGINE_DISABLE_SANDBOX: 1
   contacts:
-    command: icloud-for-linux.launcher contacts "iCloud Contacts"
+    command: bin/icloud-for-linux.launcher contacts Contacts
     plugs: *plugs
     environment: *environment
   calendar:
-    command: icloud-for-linux.launcher calendar "iCloud Calendar"
+    command: bin/icloud-for-linux.launcher calendar Calendar
     plugs: *plugs
     environment: *environment
   photos:
-    command: icloud-for-linux.launcher photos "iCloud Photos"
+    command: bin/icloud-for-linux.launcher photos Photos
     plugs: *plugs
     environment: *environment
   drive:
-    command: icloud-for-linux.launcher iclouddrive "iCloud Drive"
+    command: bin/icloud-for-linux.launcher iclouddrive Drive
     plugs: *plugs
     environment: *environment
   notes:
-    command: icloud-for-linux.launcher notes "iCloud Notes"
+    command: bin/icloud-for-linux.launcher notes Notes
     plugs: *plugs
     environment: *environment
   reminders:
-    command: icloud-for-linux.launcher reminders "iCloud Reminders"
+    command: bin/icloud-for-linux.launcher reminders Reminders
     plugs: *plugs
     environment: *environment
   pages:
-    command: icloud-for-linux.launcher pages "iCloud Pages"
+    command: bin/icloud-for-linux.launcher pages Pages
     plugs: *plugs
     environment: *environment
   numbers:
-    command: icloud-for-linux.launcher numbers "iCloud Numbers"
+    command: bin/icloud-for-linux.launcher numbers Numbers
     plugs: *plugs
     environment: *environment
   keynote:
-    command: icloud-for-linux.launcher keynote "iCloud Keynote"
+    command: bin/icloud-for-linux.launcher keynote Keynote
     plugs: *plugs
     environment: *environment
   find-my-friends:
-    command: icloud-for-linux.launcher fmf "iCloud Find My Friends"
+    command: bin/icloud-for-linux.launcher fmf Find-My-Friends
     plugs: *plugs
     environment: *environment
   find-my-iphone:
-    command: icloud-for-linux.launcher find "iCloud Find My iPhone"
+    command: bin/icloud-for-linux.launcher find Find-My-iPhone
     plugs: *plugs
     environment: *environment
