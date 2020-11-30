@@ -35,42 +35,19 @@ Window {
     onNewViewRequested: function(request) {
       if (request.requestedUrl.toString().includes('live.com')) {
         var newWindow = windowComponent.createObject(windowParent);
-        newWindow.webView.zoomFactor = windowParent.zoomFactor / 0.8
+        newWindow.webView.zoomFactor = windowParent.zoomFactor / 0.8;
         request.openIn(newWindow.webView);
       }
-      else if (request.requestedUrl.toString().includes('microsoft.com')) {
-        var newWindow = windowComponent.createObject(windowParent);
-        request.openIn(newWindow.webView);
-      }
-      else if (request.requestedUrl.toString().includes('1drv.ms')) {
-        var newWindow = windowComponent.createObject(windowParent);
-        request.openIn(newWindow.webView);
-      }      
-      else if (request.requestedUrl.toString().includes('office.com')) {
-        var newWindow = windowComponent.createObject(windowParent);
-        request.openIn(newWindow.webView);
-      }
-      else if (request.requestedUrl.toString().includes('office365.com')) {
-        var newWindow = windowComponent.createObject(windowParent);
-        request.openIn(newWindow.webView);
-      }
-      else if (request.requestedUrl.toString().includes('outlook.com')) {
-        var newWindow = windowComponent.createObject(windowParent);
-        request.openIn(newWindow.webView);
-      }
-      else if (request.requestedUrl.toString().includes('bing.com')) {
-        var newWindow = windowComponent.createObject(windowParent);
-        request.openIn(newWindow.webView);
-      }
-      else if (request.requestedUrl.toString().includes('msn.com')) {
-        var newWindow = windowComponent.createObject(windowParent);
-        request.openIn(newWindow.webView);
-      }
-      else if (request.requestedUrl.toString().includes('onenote.com')) {
-        var newWindow = windowComponent.createObject(windowParent);
-        request.openIn(newWindow.webView);
-      }
-      else if (request.requestedUrl.toString().includes('sway.office.com')) {
+      else if (request.requestedUrl.toString().includes('microsoft.com') ||
+          request.requestedUrl.toString().includes('1drv.ms') ||
+          request.requestedUrl.toString().includes('office.com') ||
+          request.requestedUrl.toString().includes('office365.com') ||
+          request.requestedUrl.toString().includes('outlook.com') ||
+          request.requestedUrl.toString().includes('bing.com') ||
+          request.requestedUrl.toString().includes('msn.com') ||
+          request.requestedUrl.toString().includes('onenote.com') ||
+          request.requestedUrl.toString().includes('sway.office.com') ||
+          request.requestedUrl.toString().includes('sharepoint.com')) {
         var newWindow = windowComponent.createObject(windowParent);
         request.openIn(newWindow.webView);
       }      
