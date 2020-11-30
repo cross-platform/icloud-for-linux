@@ -3,7 +3,7 @@ name: snapcraft
 on:
   push:
     branches:
-      - development
+      - pr29
   schedule:
     - cron:  '15 19 * * *'
 
