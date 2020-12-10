@@ -24,10 +24,10 @@ jobs:
     - name: Build .snap
       run: |
         snapcraft    
-    - name: Push .snap to Snapcraft.io
-      env:
-        SNAPCRAFT_LOGIN_FILE: ${{ secrets.SNAPCRAFT_LOGIN_FILE }}
-      run: |
-        mkdir .snapcraft
-        echo ${SNAPCRAFT_LOGIN_FILE} | base64 --decode --ignore-garbage > .snapcraft/snapcraft.cfg
-        snapcraft push --release=edge *.snap
+#    - name: Push .snap to Snapcraft.io
+#      env:
+#        SNAPCRAFT_LOGIN_FILE: ${{ secrets.SNAPCRAFT_LOGIN_FILE }}
+#      run: |
+#        mkdir .snapcraft
+#        echo ${SNAPCRAFT_LOGIN_FILE} | base64 --decode --ignore-garbage > .snapcraft/snapcraft.cfg
+#        snapcraft push --release=edge *.snap
