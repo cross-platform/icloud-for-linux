@@ -38,7 +38,6 @@ apps:
       - screen-inhibit-control
       - x11
     environment: &environment
-      DISABLE_WAYLAND: 1
       TMPDIR: $XDG_RUNTIME_DIR
   contacts:
     command: icloud-for-linux/icloud-for-linux --no-sandbox contacts
