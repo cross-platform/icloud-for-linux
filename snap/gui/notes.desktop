@@ -4,6 +4,7 @@ Name=iCloud Notes
 GenericName=iCloud Notes
 Comment=iCloud Notes
 Type=Application
+Categories=Office
 Icon=${SNAP}/meta/gui/notes.png
 Exec=icloud-for-linux.notes
 StartupWMClass=icloud-for-linux.notes

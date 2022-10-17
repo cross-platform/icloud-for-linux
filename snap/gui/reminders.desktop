@@ -4,6 +4,7 @@ Name=iCloud Reminders
 GenericName=iCloud Reminders
 Comment=iCloud Reminders
 Type=Application
+Categories=Office
 Icon=${SNAP}/meta/gui/reminders.png
 Exec=icloud-for-linux.reminders
 StartupWMClass=icloud-for-linux.reminders

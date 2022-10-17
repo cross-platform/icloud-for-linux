@@ -4,6 +4,7 @@ Name=iCloud Photos
 GenericName=iCloud Photos
 Comment=iCloud Photos
 Type=Application
+Categories=Office
 Icon=${SNAP}/meta/gui/photos.png
 Exec=icloud-for-linux.photos
 StartupWMClass=icloud-for-linux.photos
