@@ -1,0 +1,15 @@
+{
+  "name": "icloud-for-linux",
+  "author": "Marcus Tomlinson",
+  "version": "0.0.12",
+  "description": "iCloud for Linux",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "repository": "https://github.com/cross-platform/icloud-for-linux",
+  "license": "GPL-3.0",
+  "devDependencies": {
+    "electron": "^21.1.1"
+  }
+}

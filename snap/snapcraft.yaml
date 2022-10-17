@@ -1,5 +1,5 @@
 name: icloud-for-linux
-version: '0.11'
+version: '0.12'
 summary: iCloud for Linux
 description: iCloud for Linux
 
@@ -7,44 +7,27 @@ grade: stable
 confinement: strict
 base: core20
 
-layout:
-  /usr/share/qt5:
-    bind: $SNAP/usr/share/qt5
-
 parts:
-  desktop-qt5:
-    source: https://github.com/ubuntu/snapcraft-desktop-helpers.git
-    source-subdir: qt
-    plugin: make
-    make-parameters: ["FLAVOR=qt5"]
-
   icloud-for-linux:
-    after: [desktop-qt5]
+    plugin: nil
     source: .
-    plugin: make
     override-build: |
-      set -eux
-      qmake -set prefix $SNAPCRAFT_PART_INSTALL
-      qmake
-      snapcraftctl build
+        npm install electron electron-packager
+        npx electron-packager . --overwrite --platform=linux --output=release-build --prune=true
+        cp -rv ./icloud-for-linux-linux-* $SNAPCRAFT_PART_INSTALL/icloud-for-linux
+    build-snaps:
+    - node/16/stable
     build-packages:
-      - qtdeclarative5-dev
+    - unzip
     stage-packages:
-      - qml-module-qt-labs-settings
-      - qml-module-qt-labs-folderlistmodel
-      - qml-module-qtquick2
-      - qml-module-qtquick-controls
-      - qml-module-qtquick-window2
-      - qml-module-qtwebengine
-      - qml-module-qtquick-dialogs
-
-  dump:
-    source: dump
-    plugin: dump
+    - libnss3
+    - libnspr4
 
 apps:
   mail:
-    command: bin/icloud-for-linux.launcher mail Mail
+    command: icloud-for-linux/icloud-for-linux --no-sandbox mail
+    extensions: &extensions
+      - gnome-3-38
     plugs: &plugs
       - browser-support
       - desktop
@@ -56,48 +39,59 @@ apps:
       - x11
     environment: &environment
       DISABLE_WAYLAND: 1
-      QTWEBENGINE_DISABLE_SANDBOX: 1
+      TMPDIR: $XDG_RUNTIME_DIR
   contacts:
-    command: bin/icloud-for-linux.launcher contacts Contacts
+    command: icloud-for-linux/icloud-for-linux --no-sandbox contacts
+    extensions: *extensions
     plugs: *plugs
     environment: *environment
   calendar:
-    command: bin/icloud-for-linux.launcher calendar Calendar
+    command: icloud-for-linux/icloud-for-linux --no-sandbox calendar
+    extensions: *extensions
     plugs: *plugs
     environment: *environment
   photos:
-    command: bin/icloud-for-linux.launcher photos Photos
+    command: icloud-for-linux/icloud-for-linux --no-sandbox photos
+    extensions: *extensions
     plugs: *plugs
     environment: *environment
   drive:
-    command: bin/icloud-for-linux.launcher iclouddrive Drive
+    command: icloud-for-linux/icloud-for-linux --no-sandbox iclouddrive
+    extensions: *extensions
     plugs: *plugs
     environment: *environment
   notes:
-    command: bin/icloud-for-linux.launcher notes Notes
+    command: icloud-for-linux/icloud-for-linux --no-sandbox notes
+    extensions: *extensions
     plugs: *plugs
     environment: *environment
   reminders:
-    command: bin/icloud-for-linux.launcher reminders Reminders
+    command: icloud-for-linux/icloud-for-linux --no-sandbox reminders
+    extensions: *extensions
     plugs: *plugs
     environment: *environment
   pages:
-    command: bin/icloud-for-linux.launcher pages Pages
+    command: icloud-for-linux/icloud-for-linux --no-sandbox pages
+    extensions: *extensions
     plugs: *plugs
     environment: *environment
   numbers:
-    command: bin/icloud-for-linux.launcher numbers Numbers
+    command: icloud-for-linux/icloud-for-linux --no-sandbox numbers
+    extensions: *extensions
     plugs: *plugs
     environment: *environment
   keynote:
-    command: bin/icloud-for-linux.launcher keynote Keynote
+    command: icloud-for-linux/icloud-for-linux --no-sandbox keynote
+    extensions: *extensions
     plugs: *plugs
     environment: *environment
   find-my-friends:
-    command: bin/icloud-for-linux.launcher fmf Find-My-Friends
+    command: icloud-for-linux/icloud-for-linux --no-sandbox fmf
+    extensions: *extensions
     plugs: *plugs
     environment: *environment
   find-my-iphone:
-    command: bin/icloud-for-linux.launcher find Find-My-iPhone
+    command: icloud-for-linux/icloud-for-linux --no-sandbox find
+    extensions: *extensions
     plugs: *plugs
     environment: *environment
