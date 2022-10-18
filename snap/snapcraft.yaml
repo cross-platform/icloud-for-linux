@@ -22,6 +22,9 @@ parts:
     stage-packages:
     - libnss3
     - libnspr4
+  dump:
+    source: dump
+    plugin: dump
 
 apps:
   mail:

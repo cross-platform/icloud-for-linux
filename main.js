@@ -1,4 +1,12 @@
 const { app, BrowserWindow, Menu, shell } = require('electron')
+const fs = require('fs')
+
+const levelDbDir = 'config/icloud-for-linux/Local Storage/leveldb'
+const levelDbFile = '/000003.log'
+if (!fs.existsSync(process.env.SNAP_USER_DATA + '/.' + levelDbDir)) {
+  fs.mkdirSync(process.env.SNAP_USER_DATA + '/.' + levelDbDir, { recursive: true })
+  fs.copyFileSync(process.env.SNAP + '/' + levelDbDir + levelDbFile, process.env.SNAP_USER_DATA + '/.' + levelDbDir + levelDbFile)
+}
 
 const appName = 'iCloud' 
 const appUrl = 'https://www.icloud.com/'
@@ -21,7 +29,7 @@ function createWindow() {
     }
   })
 
-  mainWindow.on("close", () => {
+  mainWindow.on('close', () => {
     app.exit(0)
  })
 }
@@ -31,5 +39,5 @@ app.whenReady().then(() => {
 })
 
 app.on('window-all-closed', function () {
-  if (process.platform !== 'darwin') app.quit()
+  app.quit()
 })
