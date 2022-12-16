@@ -8,8 +8,17 @@ if (!fs.existsSync(process.env.SNAP_USER_DATA + '/.' + levelDbDir)) {
   fs.copyFileSync(process.env.SNAP + '/' + levelDbDir + levelDbFile, process.env.SNAP_USER_DATA + '/.' + levelDbDir + levelDbFile)
 }
 
+let tld
+try {
+  tld = fs.readFileSync(process.env.SNAP_USER_COMMON + '/tld', 'utf8').trim()
+}
+catch {
+  tld = '.com'
+  fs.writeFileSync(process.env.SNAP_USER_COMMON + '/tld', tld)
+}
+
 const appName = 'iCloud' 
-const appUrl = 'https://www.icloud.com/'
+const appUrl = 'https://www.icloud' + tld + '/'
 
 function createWindow() {
   Menu.setApplicationMenu(null)

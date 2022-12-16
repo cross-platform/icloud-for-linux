@@ -1,7 +1,7 @@
 {
   "name": "icloud-for-linux",
   "author": "Marcus Tomlinson",
-  "version": "0.0.12",
+  "version": "0.0.13",
   "description": "iCloud for Linux",
   "main": "main.js",
   "scripts": {
