@@ -19,3 +19,5 @@ if (${CMAKE_SYSTEM_NAME} MATCHES "Linux")
 else()
     target_link_libraries(${PROJECT_NAME} "-framework WebKit")
 endif()
+
+install(TARGETS ${PROJECT_NAME} DESTINATION bin)

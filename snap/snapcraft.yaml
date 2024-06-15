@@ -11,10 +11,12 @@ parts:
   icloud-for-linux:
     plugin: cmake
     source: .
+    cmake-parameters:
+      - -DCMAKE_INSTALL_PREFIX=/usr
 
 apps:
   mail:
-    command: icloud-for-linux/icloud-for-linux mail
+    command: usr/bin/icloud-for-linux mail
     extensions: &extensions
       - gnome-3-38
     plugs: &plugs
@@ -29,57 +31,57 @@ apps:
     environment: &environment
       TMPDIR: $XDG_RUNTIME_DIR
   contacts:
-    command: icloud-for-linux/icloud-for-linux contacts
+    command: usr/bin/icloud-for-linux contacts
     extensions: *extensions
     plugs: *plugs
     environment: *environment
   calendar:
-    command: icloud-for-linux/icloud-for-linux calendar
+    command: usr/bin/icloud-for-linux calendar
     extensions: *extensions
     plugs: *plugs
     environment: *environment
   photos:
-    command: icloud-for-linux/icloud-for-linux photos
+    command: usr/bin/icloud-for-linux photos
     extensions: *extensions
     plugs: *plugs
     environment: *environment
   drive:
-    command: icloud-for-linux/icloud-for-linux iclouddrive
+    command: usr/bin/icloud-for-linux iclouddrive
     extensions: *extensions
     plugs: *plugs
     environment: *environment
   notes:
-    command: icloud-for-linux/icloud-for-linux notes
+    command: usr/bin/icloud-for-linux notes
     extensions: *extensions
     plugs: *plugs
     environment: *environment
   reminders:
-    command: icloud-for-linux/icloud-for-linux reminders
+    command: usr/bin/icloud-for-linux reminders
     extensions: *extensions
     plugs: *plugs
     environment: *environment
   pages:
-    command: icloud-for-linux/icloud-for-linux pages
+    command: usr/bin/icloud-for-linux pages
     extensions: *extensions
     plugs: *plugs
     environment: *environment
   numbers:
-    command: icloud-for-linux/icloud-for-linux numbers
+    command: usr/bin/icloud-for-linux numbers
     extensions: *extensions
     plugs: *plugs
     environment: *environment
   keynote:
-    command: icloud-for-linux/icloud-for-linux keynote
+    command: usr/bin/icloud-for-linux keynote
     extensions: *extensions
     plugs: *plugs
     environment: *environment
   find-my-friends:
-    command: icloud-for-linux/icloud-for-linux fmf
+    command: usr/bin/icloud-for-linux fmf
     extensions: *extensions
     plugs: *plugs
     environment: *environment
   find-my-iphone:
-    command: icloud-for-linux/icloud-for-linux find
+    command: usr/bin/icloud-for-linux find
     extensions: *extensions
     plugs: *plugs
     environment: *environment
