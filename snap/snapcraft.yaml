@@ -1,5 +1,5 @@
 name: icloud-for-linux
-version: '0.13'
+version: '0.14'
 summary: iCloud for Linux
 description: iCloud for Linux
 
@@ -9,27 +9,14 @@ base: core20
 
 parts:
   icloud-for-linux:
-    plugin: nil
+    plugin: cmake
     source: .
-    override-build: |
-        npm install electron electron-packager
-        npx electron-packager . --overwrite --platform=linux --output=release-build --prune=true
-        cp -rv ./icloud-for-linux-linux-* $SNAPCRAFT_PART_INSTALL/icloud-for-linux
-        chmod +xr $SNAPCRAFT_PART_INSTALL/icloud-for-linux
-    build-snaps:
-    - node/16/stable
-    build-packages:
-    - unzip
-    stage-packages:
-    - libnss3
-    - libnspr4
-  dump:
-    source: dump
-    plugin: dump
+    cmake-parameters:
+      - -DCMAKE_INSTALL_PREFIX=/usr
 
 apps:
   mail:
-    command: icloud-for-linux/icloud-for-linux --no-sandbox mail
+    command: usr/bin/icloud-for-linux mail
     extensions: &extensions
       - gnome-3-38
     plugs: &plugs
@@ -44,57 +31,52 @@ apps:
     environment: &environment
       TMPDIR: $XDG_RUNTIME_DIR
   contacts:
-    command: icloud-for-linux/icloud-for-linux --no-sandbox contacts
+    command: usr/bin/icloud-for-linux contacts Contacts
     extensions: *extensions
     plugs: *plugs
     environment: *environment
   calendar:
-    command: icloud-for-linux/icloud-for-linux --no-sandbox calendar
+    command: usr/bin/icloud-for-linux calendar Calendar
     extensions: *extensions
     plugs: *plugs
     environment: *environment
   photos:
-    command: icloud-for-linux/icloud-for-linux --no-sandbox photos
+    command: usr/bin/icloud-for-linux photos Photos
     extensions: *extensions
     plugs: *plugs
     environment: *environment
   drive:
-    command: icloud-for-linux/icloud-for-linux --no-sandbox iclouddrive
+    command: usr/bin/icloud-for-linux iclouddrive Drive
     extensions: *extensions
     plugs: *plugs
     environment: *environment
   notes:
-    command: icloud-for-linux/icloud-for-linux --no-sandbox notes
+    command: usr/bin/icloud-for-linux notes Notes
     extensions: *extensions
     plugs: *plugs
     environment: *environment
   reminders:
-    command: icloud-for-linux/icloud-for-linux --no-sandbox reminders
+    command: usr/bin/icloud-for-linux reminders Reminders
     extensions: *extensions
     plugs: *plugs
     environment: *environment
   pages:
-    command: icloud-for-linux/icloud-for-linux --no-sandbox pages
+    command: usr/bin/icloud-for-linux pages Pages
     extensions: *extensions
     plugs: *plugs
     environment: *environment
   numbers:
-    command: icloud-for-linux/icloud-for-linux --no-sandbox numbers
+    command: usr/bin/icloud-for-linux numbers Numbers
     extensions: *extensions
     plugs: *plugs
     environment: *environment
   keynote:
-    command: icloud-for-linux/icloud-for-linux --no-sandbox keynote
+    command: usr/bin/icloud-for-linux keynote Keynote
     extensions: *extensions
     plugs: *plugs
     environment: *environment
-  find-my-friends:
-    command: icloud-for-linux/icloud-for-linux --no-sandbox fmf
-    extensions: *extensions
-    plugs: *plugs
-    environment: *environment
-  find-my-iphone:
-    command: icloud-for-linux/icloud-for-linux --no-sandbox find
+  find:
+    command: usr/bin/icloud-for-linux find Find
     extensions: *extensions
     plugs: *plugs
     environment: *environment

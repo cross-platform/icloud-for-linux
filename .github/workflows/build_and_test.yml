@@ -1,0 +1,22 @@
+name: Build & Test
+
+on: [push]
+
+jobs:
+  build_and_test:
+    runs-on: ubuntu-20.04
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+      with:
+        submodules: recursive
+
+    - name: Build
+      id: snapcraft
+      uses: snapcore/action-build@v1
+
+    - uses: actions/upload-artifact@v3
+      with:
+        name: snap
+        path: ${{ steps.snapcraft.outputs.snap }}

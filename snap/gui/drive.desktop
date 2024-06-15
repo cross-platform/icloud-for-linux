@@ -7,4 +7,4 @@ Type=Application
 Categories=Office
 Icon=${SNAP}/meta/gui/drive.png
 Exec=icloud-for-linux.drive
-StartupWMClass=icloud-for-linux.iclouddrive
+StartupWMClass=icloud-for-linux.drive

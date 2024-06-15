@@ -1,0 +1,27 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Build",
+            "type": "shell",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "command": [
+                "cp .vscode/_settings.json .vscode/settings.json &&",
+                "mkdir -p build &&",
+                "cd build &&",
+                "cmake -DCMAKE_BUILD_TYPE=Debug .. &&",
+                "cmake --build . -j8 --config Debug"
+            ],
+            "problemMatcher": {
+                "base": "$gcc",
+                "fileLocation": [
+                    "relative",
+                    "${workspaceFolder}/build/"
+                ]
+            }
+        }
+    ]
+}
