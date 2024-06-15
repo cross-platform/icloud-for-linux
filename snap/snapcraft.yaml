@@ -75,12 +75,7 @@ apps:
     extensions: *extensions
     plugs: *plugs
     environment: *environment
-  find-my-friends:
-    command: usr/bin/icloud-for-linux fmf
-    extensions: *extensions
-    plugs: *plugs
-    environment: *environment
-  find-my-iphone:
+  find-devices:
     command: usr/bin/icloud-for-linux find
     extensions: *extensions
     plugs: *plugs
