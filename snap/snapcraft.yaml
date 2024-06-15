@@ -1,5 +1,5 @@
 name: icloud-for-linux
-version: '0.13'
+version: '0.14'
 summary: iCloud for Linux
 description: iCloud for Linux
 
@@ -9,23 +9,8 @@ base: core20
 
 parts:
   icloud-for-linux:
-    plugin: nil
+    plugin: cmake
     source: .
-    override-build: |
-        npm install electron electron-packager
-        npx electron-packager . --overwrite --platform=linux --output=release-build --prune=true
-        cp -rv ./icloud-for-linux-linux-* $SNAPCRAFT_PART_INSTALL/icloud-for-linux
-        chmod +xr $SNAPCRAFT_PART_INSTALL/icloud-for-linux
-    build-snaps:
-    - node/16/stable
-    build-packages:
-    - unzip
-    stage-packages:
-    - libnss3
-    - libnspr4
-  dump:
-    source: dump
-    plugin: dump
 
 apps:
   mail:
