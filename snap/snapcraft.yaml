@@ -29,7 +29,7 @@ parts:
 
 apps:
   mail:
-    command: icloud-for-linux/icloud-for-linux --no-sandbox mail
+    command: icloud-for-linux/icloud-for-linux mail
     extensions: &extensions
       - gnome-3-38
     plugs: &plugs
@@ -44,57 +44,57 @@ apps:
     environment: &environment
       TMPDIR: $XDG_RUNTIME_DIR
   contacts:
-    command: icloud-for-linux/icloud-for-linux --no-sandbox contacts
+    command: icloud-for-linux/icloud-for-linux contacts
     extensions: *extensions
     plugs: *plugs
     environment: *environment
   calendar:
-    command: icloud-for-linux/icloud-for-linux --no-sandbox calendar
+    command: icloud-for-linux/icloud-for-linux calendar
     extensions: *extensions
     plugs: *plugs
     environment: *environment
   photos:
-    command: icloud-for-linux/icloud-for-linux --no-sandbox photos
+    command: icloud-for-linux/icloud-for-linux photos
     extensions: *extensions
     plugs: *plugs
     environment: *environment
   drive:
-    command: icloud-for-linux/icloud-for-linux --no-sandbox iclouddrive
+    command: icloud-for-linux/icloud-for-linux iclouddrive
     extensions: *extensions
     plugs: *plugs
     environment: *environment
   notes:
-    command: icloud-for-linux/icloud-for-linux --no-sandbox notes
+    command: icloud-for-linux/icloud-for-linux notes
     extensions: *extensions
     plugs: *plugs
     environment: *environment
   reminders:
-    command: icloud-for-linux/icloud-for-linux --no-sandbox reminders
+    command: icloud-for-linux/icloud-for-linux reminders
     extensions: *extensions
     plugs: *plugs
     environment: *environment
   pages:
-    command: icloud-for-linux/icloud-for-linux --no-sandbox pages
+    command: icloud-for-linux/icloud-for-linux pages
     extensions: *extensions
     plugs: *plugs
     environment: *environment
   numbers:
-    command: icloud-for-linux/icloud-for-linux --no-sandbox numbers
+    command: icloud-for-linux/icloud-for-linux numbers
     extensions: *extensions
     plugs: *plugs
     environment: *environment
   keynote:
-    command: icloud-for-linux/icloud-for-linux --no-sandbox keynote
+    command: icloud-for-linux/icloud-for-linux keynote
     extensions: *extensions
     plugs: *plugs
     environment: *environment
   find-my-friends:
-    command: icloud-for-linux/icloud-for-linux --no-sandbox fmf
+    command: icloud-for-linux/icloud-for-linux fmf
     extensions: *extensions
     plugs: *plugs
     environment: *environment
   find-my-iphone:
-    command: icloud-for-linux/icloud-for-linux --no-sandbox find
+    command: icloud-for-linux/icloud-for-linux find
     extensions: *extensions
     plugs: *plugs
     environment: *environment
