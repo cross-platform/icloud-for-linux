@@ -1,0 +1,16 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Run",
+            "preLaunchTask": "Build",
+            "program": "${workspaceFolder}/build/icloud-for-linux",
+            "cwd": "${workspaceFolder}",
+            "request": "launch",
+            "type": "cppvsdbg",
+            "osx": {
+                "type": "lldb"
+            }
+        }
+    ]
+}
