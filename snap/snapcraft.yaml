@@ -1,5 +1,5 @@
 name: icloud-for-linux
-version: '0.14'
+version: '0.15'
 summary: iCloud for Linux
 description: iCloud for Linux
 
@@ -25,6 +25,7 @@ apps:
       - desktop-legacy
       - home
       - network
+      - network-status
       - opengl
       - screen-inhibit-control
       - x11
