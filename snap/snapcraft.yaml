@@ -31,52 +31,52 @@ apps:
     environment: &environment
       TMPDIR: $XDG_RUNTIME_DIR
   contacts:
-    command: usr/bin/icloud-for-linux contacts 'iCloud Contacts'
+    command: usr/bin/icloud-for-linux contacts Contacts
     extensions: *extensions
     plugs: *plugs
     environment: *environment
   calendar:
-    command: usr/bin/icloud-for-linux calendar 'iCloud Calendar'
+    command: usr/bin/icloud-for-linux calendar Calendar
     extensions: *extensions
     plugs: *plugs
     environment: *environment
   photos:
-    command: usr/bin/icloud-for-linux photos 'iCloud Photos'
+    command: usr/bin/icloud-for-linux photos Photos
     extensions: *extensions
     plugs: *plugs
     environment: *environment
   drive:
-    command: usr/bin/icloud-for-linux iclouddrive 'iCloud Drive'
+    command: usr/bin/icloud-for-linux iclouddrive Drive
     extensions: *extensions
     plugs: *plugs
     environment: *environment
   notes:
-    command: usr/bin/icloud-for-linux notes 'iCloud Notes'
+    command: usr/bin/icloud-for-linux notes Notes
     extensions: *extensions
     plugs: *plugs
     environment: *environment
   reminders:
-    command: usr/bin/icloud-for-linux reminders 'iCloud Reminders'
+    command: usr/bin/icloud-for-linux reminders Reminders
     extensions: *extensions
     plugs: *plugs
     environment: *environment
   pages:
-    command: usr/bin/icloud-for-linux pages 'iCloud Pages'
+    command: usr/bin/icloud-for-linux pages Pages
     extensions: *extensions
     plugs: *plugs
     environment: *environment
   numbers:
-    command: usr/bin/icloud-for-linux numbers 'iCloud Numbers'
+    command: usr/bin/icloud-for-linux numbers Numbers
     extensions: *extensions
     plugs: *plugs
     environment: *environment
   keynote:
-    command: usr/bin/icloud-for-linux keynote 'iCloud Keynote'
+    command: usr/bin/icloud-for-linux keynote Keynote
     extensions: *extensions
     plugs: *plugs
     environment: *environment
-  find-devices:
-    command: usr/bin/icloud-for-linux find 'iCloud Find Devices'
+  find:
+    command: usr/bin/icloud-for-linux find Find
     extensions: *extensions
     plugs: *plugs
     environment: *environment

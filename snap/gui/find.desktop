@@ -1,0 +1,10 @@
+[Desktop Entry]
+Version=0.11
+Name=iCloud Find
+GenericName=iCloud Find
+Comment=iCloud Find
+Type=Application
+Categories=Office
+Icon=${SNAP}/meta/gui/find.png
+Exec=icloud-for-linux.find
+StartupWMClass=icloud-for-linux.find
