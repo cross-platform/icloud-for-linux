@@ -5,7 +5,7 @@
             "name": "Run",
             "preLaunchTask": "Build",
             "program": "${workspaceFolder}/build/icloud-for-linux",
-            "args": ["notes"],
+            "args": ["notes", "Notes"],
             "cwd": "${workspaceFolder}",
             "request": "launch",
             "type": "cppdbg",
