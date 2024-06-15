@@ -6,7 +6,7 @@ int main(int, char **argv)
 {
     choc::ui::DesktopWindow appWin(choc::ui::Bounds{0, 0, 0, 0});
     appWin.centreWithSize(1000, 600);
-    appWin.setWindowTitle( "iCloud" );
+    appWin.setWindowTitle( std::string(argv[2]) );
     appWin.windowClosed = []()
     { choc::messageloop::stop(); };
 

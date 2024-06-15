@@ -31,52 +31,52 @@ apps:
     environment: &environment
       TMPDIR: $XDG_RUNTIME_DIR
   contacts:
-    command: usr/bin/icloud-for-linux contacts
+    command: usr/bin/icloud-for-linux contacts "iCloud Contacts"
     extensions: *extensions
     plugs: *plugs
     environment: *environment
   calendar:
-    command: usr/bin/icloud-for-linux calendar
+    command: usr/bin/icloud-for-linux calendar "iCloud Calendar"
     extensions: *extensions
     plugs: *plugs
     environment: *environment
   photos:
-    command: usr/bin/icloud-for-linux photos
+    command: usr/bin/icloud-for-linux photos "iCloud Photos"
     extensions: *extensions
     plugs: *plugs
     environment: *environment
   drive:
-    command: usr/bin/icloud-for-linux iclouddrive
+    command: usr/bin/icloud-for-linux iclouddrive "iCloud Drive"
     extensions: *extensions
     plugs: *plugs
     environment: *environment
   notes:
-    command: usr/bin/icloud-for-linux notes
+    command: usr/bin/icloud-for-linux notes "iCloud Notes"
     extensions: *extensions
     plugs: *plugs
     environment: *environment
   reminders:
-    command: usr/bin/icloud-for-linux reminders
+    command: usr/bin/icloud-for-linux reminders "iCloud Reminders"
     extensions: *extensions
     plugs: *plugs
     environment: *environment
   pages:
-    command: usr/bin/icloud-for-linux pages
+    command: usr/bin/icloud-for-linux pages "iCloud Pages"
     extensions: *extensions
     plugs: *plugs
     environment: *environment
   numbers:
-    command: usr/bin/icloud-for-linux numbers
+    command: usr/bin/icloud-for-linux numbers "iCloud Numbers"
     extensions: *extensions
     plugs: *plugs
     environment: *environment
   keynote:
-    command: usr/bin/icloud-for-linux keynote
+    command: usr/bin/icloud-for-linux keynote "iCloud Keynote"
     extensions: *extensions
     plugs: *plugs
     environment: *environment
   find-devices:
-    command: usr/bin/icloud-for-linux find
+    command: usr/bin/icloud-for-linux find "iCloud Find Devices"
     extensions: *extensions
     plugs: *plugs
     environment: *environment
