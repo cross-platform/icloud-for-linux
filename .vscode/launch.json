@@ -8,7 +8,7 @@
             "args": ["notes"],
             "cwd": "${workspaceFolder}",
             "request": "launch",
-            "type": "cppvsdbg",
+            "type": "cppdbg",
             "osx": {
                 "type": "lldb"
             }
