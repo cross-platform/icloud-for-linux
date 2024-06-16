@@ -1,5 +1,5 @@
 name: icloud-for-linux
-version: '0.16'
+version: '0.17'
 summary: iCloud for Linux
 description: iCloud for Linux
 
@@ -16,7 +16,7 @@ parts:
 
 apps:
   mail:
-    command: usr/bin/icloud-for-linux mail
+    command: usr/bin/icloud-for-linux mail Mail
     extensions: &extensions
       - gnome-3-38
     plugs: &plugs
