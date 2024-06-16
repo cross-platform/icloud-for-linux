@@ -1,5 +1,5 @@
 name: icloud-for-linux
-version: '0.15'
+version: '0.16'
 summary: iCloud for Linux
 description: iCloud for Linux
 
@@ -28,6 +28,7 @@ apps:
       - network-status
       - opengl
       - screen-inhibit-control
+      - wayland
       - x11
     environment: &environment
       TMPDIR: $XDG_RUNTIME_DIR

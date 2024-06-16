@@ -6,6 +6,7 @@
             "preLaunchTask": "Build",
             "program": "${workspaceFolder}/build/icloud-for-linux",
             "args": ["notes", "Notes"],
+            "environment": [{"name":"TMPDIR","value":"${workspaceFolder}/build"}],
             "cwd": "${workspaceFolder}",
             "request": "launch",
             "type": "cppdbg",

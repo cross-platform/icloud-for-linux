@@ -16,6 +16,21 @@ int main(int, char **argv)
     appWin.setContent(webView.getViewHandle());
     appWin.toFront();
 
+    webView.onNewWindow( [&](const std::string& url)
+    {
+        choc::ui::DesktopWindow appWin(choc::ui::Bounds{0, 0, 0, 0});
+        appWin.centreWithSize(1000, 600);
+        appWin.setWindowTitle( "iCloud " + std::string(argv[2]) + " ⧉" );
+
+        choc::ui::WebView webView;
+        webView.navigate(url);
+
+        appWin.setContent(webView.getViewHandle());
+        appWin.toFront();
+
+        return appWin.getWindowHandle();
+    });
+
     choc::messageloop::run();
     return 0;
 }

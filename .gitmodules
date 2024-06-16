@@ -1,4 +1,4 @@
 [submodule "subprojects/choc"]
 	path = subprojects/choc
 	url = https://github.com/cross-platform/choc.git
-	branch = fork
+	branch = chip
