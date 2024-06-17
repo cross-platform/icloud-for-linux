@@ -5,7 +5,9 @@
 int main(int, char **argv)
 {
     choc::ui::DesktopWindow appWin(choc::ui::Bounds{0, 0, 0, 0});
+    appWin.setVisible(false);
     appWin.centreWithSize(1000, 600);
+    appWin.setVisible(true);
     appWin.setWindowTitle( "iCloud " + std::string(argv[2]) );
     appWin.windowClosed = []()
     { choc::messageloop::stop(); };
@@ -18,17 +20,19 @@ int main(int, char **argv)
 
     webView.onNewWindow( [&](const std::string& url)
     {
-        choc::ui::DesktopWindow appWin(choc::ui::Bounds{0, 0, 0, 0});
-        appWin.centreWithSize(1000, 600);
-        appWin.setWindowTitle( "iCloud " + std::string(argv[2]) + " ⧉" );
+        choc::ui::DesktopWindow appWin2(choc::ui::Bounds{0, 0, 0, 0});
+        appWin2.setVisible(false);
+        appWin2.centreWithSize(1000, 600);
+        appWin2.setVisible(true);
+        appWin2.setWindowTitle( "iCloud " + std::string(argv[2]) + " ⧉" );
 
         choc::ui::WebView webView;
         webView.navigate(url);
 
-        appWin.setContent(webView.getViewHandle());
-        appWin.toFront();
+        appWin2.setContent(webView.getViewHandle());
+        appWin2.toFront();
 
-        return appWin.getWindowHandle();
+        return appWin2.getWindowHandle();
     });
 
     choc::messageloop::run();
