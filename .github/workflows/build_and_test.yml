@@ -7,16 +7,44 @@ jobs:
     runs-on: ubuntu-20.04
 
     steps:
-    - name: Checkout
-      uses: actions/checkout@v4
-      with:
-        submodules: recursive
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
 
-    - name: Build
-      id: snapcraft
-      uses: snapcore/action-build@v1
+      - name: Set up RPM build environment
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y rpmdevtools rpm-build rpmlint gcc g++ cmake make pkg-config libgtk-3-dev libwebkit2gtk-4.0-dev alien gdb
+          rpmdev-setuptree
 
-    - uses: actions/upload-artifact@v3
-      with:
-        name: snap
-        path: ${{ steps.snapcraft.outputs.snap }}
+      - name: Prepare source code
+        run: |
+          mkdir -p ~/rpmbuild/SOURCES/
+          cp -r . ~/rpmbuild/SOURCES/icloud-for-linux-0.22
+          tar czf ~/rpmbuild/SOURCES/icloud-for-linux-0.22.tar.gz -C ~/rpmbuild/SOURCES icloud-for-linux-0.22
+          cp icloud-for-linux.spec ~/rpmbuild/SPECS/
+
+      - name: Build RPM package
+        run: |
+          cd ~/rpmbuild/SPECS
+          rpmbuild -ba icloud-for-linux.spec
+
+      - name: Convert RPM to DEB
+        run: |
+          sudo alien -k --scripts ~/rpmbuild/RPMS/x86_64/icloud-for-linux-0.22-1.x86_64.rpm
+
+      - name: Install DEB package
+        run: |
+          sudo dpkg -i icloud-for-linux_0.22-1_amd64.deb
+
+      - name: Test RPM package
+        run: |
+          export ICLOUD_TLD=".co.uk"
+          gdb -batch -ex "run" -ex "bt" /usr/bin/icloud-for-linux
+
+      - name: Upload RPM artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: icloud-for-linux-rpm
+          path: ~/rpmbuild/RPMS/x86_64/icloud-for-linux-0.22-1.x86_64.rpm
