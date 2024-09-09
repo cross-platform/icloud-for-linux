@@ -6,6 +6,28 @@
 #include <filesystem>
 #include <fstream>
 
+constexpr const char* USER_AGENT = "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:125.0) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/16.0 Safari/605.1.15";
+
+choc::ui::DesktopWindow createWindow( const std::string& title, const std::string& url )
+{
+    choc::ui::DesktopWindow window( choc::ui::Bounds{ 0, 0, 0, 0 } );
+
+    window.setVisible( false );
+    window.centreWithSize( 1000, 600 );
+    window.setVisible( true );
+    window.setWindowTitle( title );
+
+    choc::ui::WebView::Options webViewOptions;
+    webViewOptions.customUserAgent = USER_AGENT;
+    choc::ui::WebView webView( webViewOptions );
+    webView.navigate( url );
+
+    window.setContent( webView.getViewHandle() );
+    window.toFront();
+
+    return window;
+}
+
 int main( int, char** argv )
 {
     std::string tld = ".com";
@@ -22,39 +44,15 @@ int main( int, char** argv )
         }
     }
 
-    choc::ui::DesktopWindow appWin( choc::ui::Bounds{ 0, 0, 0, 0 } );
-    appWin.setVisible( false );
-    appWin.centreWithSize( 1000, 600 );
-    appWin.setVisible( true );
-    appWin.setWindowTitle( "iCloud " + std::string( argv[2] ) );
+    choc::ui::DesktopWindow appWin = createWindow( "iCloud " + std::string(argv[2]), "https://www.icloud" + tld + "/" + std::string(argv[1]) );
     appWin.windowClosed = []() { choc::messageloop::stop(); };
 
-    choc::ui::WebView::Options webViewOptions;
-    webViewOptions.customUserAgent = "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:125.0) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/16.0 Safari/605.1.15";
-    choc::ui::WebView webView( webViewOptions );
-    webView.navigate( "https://www.icloud" + tld + "/" + std::string( argv[1] ) );
-
-    appWin.setContent( webView.getViewHandle() );
-    appWin.toFront();
-
-    webView.onNewWindow( [&argv]( const std::string& url ) {
-        choc::ui::DesktopWindow appWin2( choc::ui::Bounds{ 0, 0, 0, 0 } );
-        appWin2.setVisible( false );
-        appWin2.centreWithSize( 1000, 600 );
-        appWin2.setVisible( true );
-        appWin2.setWindowTitle( "iCloud " + std::string( argv[2] ) + " ⧉" );
-
-        choc::ui::WebView::Options webView2Options;
-        webView2Options.customUserAgent = "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:125.0) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/16.0 Safari/605.1.15";
-        choc::ui::WebView webView2( webView2Options );
-        webView2.navigate( url );
-
-        appWin2.setContent( webView2.getViewHandle() );
-        appWin2.toFront();
-
+    appWin.onNewWindow( [&argv]( const std::string& url ) {
+        choc::ui::DesktopWindow appWin2 = createWindow( "iCloud " + std::string(argv[2]) + " ⧉", url );
         return appWin2.getWindowHandle();
-    } );
+    });
 
     choc::messageloop::run();
     return 0;
 }
+
