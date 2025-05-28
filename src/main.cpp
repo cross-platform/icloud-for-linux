@@ -30,7 +30,7 @@ int main( int, char** argv )
     appWin.windowClosed = []() { choc::messageloop::stop(); };
 
     choc::ui::WebView::Options webViewOptions;
-    webViewOptions.customUserAgent = "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:125.0) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/16.0 Safari/605.1.15";
+    webViewOptions.customUserAgent = "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.7123.45 Safari/537.36";
     choc::ui::WebView webView( webViewOptions );
     webView.navigate( "https://www.icloud" + tld + "/" + std::string( argv[1] ) );
 
@@ -45,7 +45,7 @@ int main( int, char** argv )
         appWin2.setWindowTitle( "iCloud " + std::string( argv[2] ) + " ⧉" );
 
         choc::ui::WebView::Options webView2Options;
-        webView2Options.customUserAgent = "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:125.0) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/16.0 Safari/605.1.15";
+        webView2Options.customUserAgent = "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.7123.45 Safari/537.36";
         choc::ui::WebView webView2( webView2Options );
         webView2.navigate( url );
 
