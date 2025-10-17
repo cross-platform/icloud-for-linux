@@ -4,7 +4,7 @@ project(icloud-for-linux)
 
 set(CMAKE_CXX_STANDARD 17)
 
-include_directories(subprojects/choc)
+include_directories(subprojects/choc/choc)
 
 add_executable(
     ${PROJECT_NAME}
