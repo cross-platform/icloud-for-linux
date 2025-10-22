@@ -22,7 +22,7 @@ int main( int, char** argv )
         }
     }
 
-    choc::ui::DesktopWindow appWin( choc::ui::Bounds{ 0, 0, 0, 0 } );
+    choc::ui::DesktopWindow appWin( choc::ui::Bounds{ 0, 0, 1000, 600 } );
     appWin.setVisible( false );
     appWin.centreWithSize( 1000, 600 );
     appWin.setVisible( true );
@@ -39,7 +39,7 @@ int main( int, char** argv )
     appWin.toFront();
 
     webView.onNewWindow( [&argv]( const std::string& url ) {
-        choc::ui::DesktopWindow appWin2( choc::ui::Bounds{ 0, 0, 0, 0 } );
+        choc::ui::DesktopWindow appWin2( choc::ui::Bounds{ 0, 0, 1000, 600 } );
         appWin2.setVisible( false );
         appWin2.centreWithSize( 1000, 600 );
         appWin2.setVisible( true );
