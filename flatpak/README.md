@@ -22,8 +22,10 @@ flatpak install flathub org.gnome.Platform//49 org.gnome.Sdk//49
 
 Install dependency
 ```bash
-sudo apt install libwebkit2gtk-4.0-dev  # Debian/Ubuntu
-sudo dnf install webkit2gtk4.0-devel    # Fedora
+sudo apt install libwebkit2gtk-4.0-dev  # Debian/Ubuntu 22
+sudo apt install libwebkit2gtk-4.1-dev  # Debian/Ubuntu 24
+sudo dnf install webkit2gtk4.0-devel    # Fedora prior 42
+sudo dnf install webkit2gtk4.1-devel    # Fedora 42
 ```
 
 ## Building

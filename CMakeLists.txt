@@ -14,7 +14,13 @@ add_executable(
 if (${CMAKE_SYSTEM_NAME} MATCHES "Linux")
     find_package(PkgConfig REQUIRED)
     pkg_check_modules (gtk3 REQUIRED gtk+-3.0 IMPORTED_TARGET)
-    pkg_check_modules (webkit2 REQUIRED webkit2gtk-4.0 IMPORTED_TARGET)
+    
+    # Try webkit2gtk-4.1 first, then fallback to webkit2gtk-4.0
+    pkg_check_modules (webkit2 webkit2gtk-4.1 IMPORTED_TARGET)
+    if(NOT webkit2_FOUND)
+        pkg_check_modules (webkit2 REQUIRED webkit2gtk-4.0 IMPORTED_TARGET)
+    endif()
+    
     target_link_libraries (${PROJECT_NAME} PUBLIC pthread PkgConfig::gtk3 PkgConfig::webkit2)
 else()
     target_link_libraries(${PROJECT_NAME} "-framework WebKit")
