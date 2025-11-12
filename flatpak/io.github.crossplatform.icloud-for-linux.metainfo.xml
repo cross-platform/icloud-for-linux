@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="desktop-application">
+  <id>io.github.crossplatform.icloud-for-linux</id>
+  <metadata_license>CC0-1.0</metadata_license>
+  <project_license>MIT</project_license>
+  <name>iCloud for Linux</name>
+  <summary>Access iCloud services on Linux</summary>
+  <description>
+    <p>
+      iCloud for Linux provides native access to various iCloud services including Mail, 
+      Contacts, Calendar, Photos, Drive, Notes, Reminders, and iWork applications (Pages, 
+      Numbers, Keynote) directly on your Linux desktop.
+    </p>
+    <p>
+      Each service runs as a separate application with its own window, giving you a native-like
+      experience for accessing your iCloud data.
+    </p>
+  </description>
+  <launchable type="desktop-id">io.github.crossplatform.icloud-for-linux.mail.desktop</launchable>
+  <launchable type="desktop-id">io.github.crossplatform.icloud-for-linux.contacts.desktop</launchable>
+  <launchable type="desktop-id">io.github.crossplatform.icloud-for-linux.calendar.desktop</launchable>
+  <launchable type="desktop-id">io.github.crossplatform.icloud-for-linux.photos.desktop</launchable>
+  <launchable type="desktop-id">io.github.crossplatform.icloud-for-linux.drive.desktop</launchable>
+  <launchable type="desktop-id">io.github.crossplatform.icloud-for-linux.notes.desktop</launchable>
+  <launchable type="desktop-id">io.github.crossplatform.icloud-for-linux.reminders.desktop</launchable>
+  <launchable type="desktop-id">io.github.crossplatform.icloud-for-linux.pages.desktop</launchable>
+  <launchable type="desktop-id">io.github.crossplatform.icloud-for-linux.numbers.desktop</launchable>
+  <launchable type="desktop-id">io.github.crossplatform.icloud-for-linux.keynote.desktop</launchable>
+  <launchable type="desktop-id">io.github.crossplatform.icloud-for-linux.find.desktop</launchable>
+  <screenshots>
+    <screenshot type="default">
+      <caption>iCloud Mail</caption>
+    </screenshot>
+  </screenshots>
+  <url type="homepage">https://github.com/cross-platform/icloud-for-linux</url>
+  <url type="bugtracker">https://github.com/cross-platform/icloud-for-linux/issues</url>
+  <content_rating type="oars-1.1">
+    <content_attribute id="social-info">intense</content_attribute>
+  </content_rating>
+  <releases>
+    <release version="0.26" date="2025-11-12"/>
+  </releases>
+</component>
