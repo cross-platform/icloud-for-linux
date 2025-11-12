@@ -3,8 +3,8 @@ name: Build & Test
 on: [push]
 
 jobs:
-  build_and_test:
-    runs-on: ubuntu-22.04
+  build_snap:
+    runs-on: ubuntu-24.04
 
     steps:
     - name: Checkout
@@ -12,11 +12,37 @@ jobs:
       with:
         submodules: recursive
 
-    - name: Build
+    - name: Build Snap
       id: snapcraft
       uses: snapcore/action-build@v1
 
-    - uses: actions/upload-artifact@v4
+    - name: Upload Snap Artifact
+      uses: actions/upload-artifact@v4
       with:
         name: snap
         path: ${{ steps.snapcraft.outputs.snap }}
+
+  build_flatpak:
+    runs-on: ubuntu-24.04
+    container:
+      image: bilelmoussaoui/flatpak-github-actions:gnome-47
+      options: --privileged
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+      with:
+        submodules: recursive
+
+    - name: Build Flatpak
+      uses: flatpak/flatpak-github-actions/flatpak-builder@v6
+      with:
+        bundle: icloud-for-linux.flatpak
+        manifest-path: flatpak/io.github.crossplatform.icloud-for-linux.yml
+        cache-key: flatpak-builder-${{ github.sha }}
+
+    - name: Upload Flatpak Artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: flatpak
+        path: icloud-for-linux.flatpak
