@@ -1,0 +1,82 @@
+app-id: io.github.crossplatform.icloud-for-linux
+runtime: org.gnome.Platform
+runtime-version: '49'
+sdk: org.gnome.Sdk
+command: icloud-for-linux
+
+finish-args:
+  # Network access
+  - --share=network
+  # X11 and Wayland
+  - --share=ipc
+  - --socket=x11
+  - --socket=wayland
+  # Graphics
+  - --device=dri
+  # Access to home directory
+  - --filesystem=home
+  # Pulseaudio for potential media playback
+  - --socket=pulseaudio
+  # Allow browser features
+  - --talk-name=org.freedesktop.Notifications
+  - --talk-name=org.freedesktop.secrets
+  - --own-name=org.mpris.MediaPlayer2.icloud-for-linux
+
+modules:
+  - name: icloud-for-linux
+    buildsystem: cmake
+    config-opts:
+      - -DCMAKE_BUILD_TYPE=Release
+    sources:
+      - type: dir
+        path: ..
+    post-install:
+      # Install metainfo
+      - install -Dm644 flatpak/io.github.crossplatform.icloud-for-linux.metainfo.xml /app/share/metainfo/io.github.crossplatform.icloud-for-linux.metainfo.xml
+      # Install desktop files
+      - install -Dm644 snap/gui/mail.desktop /app/share/applications/io.github.crossplatform.icloud-for-linux.mail.desktop
+      - install -Dm644 snap/gui/contacts.desktop /app/share/applications/io.github.crossplatform.icloud-for-linux.contacts.desktop
+      - install -Dm644 snap/gui/calendar.desktop /app/share/applications/io.github.crossplatform.icloud-for-linux.calendar.desktop
+      - install -Dm644 snap/gui/photos.desktop /app/share/applications/io.github.crossplatform.icloud-for-linux.photos.desktop
+      - install -Dm644 snap/gui/drive.desktop /app/share/applications/io.github.crossplatform.icloud-for-linux.drive.desktop
+      - install -Dm644 snap/gui/notes.desktop /app/share/applications/io.github.crossplatform.icloud-for-linux.notes.desktop
+      - install -Dm644 snap/gui/reminders.desktop /app/share/applications/io.github.crossplatform.icloud-for-linux.reminders.desktop
+      - install -Dm644 snap/gui/pages.desktop /app/share/applications/io.github.crossplatform.icloud-for-linux.pages.desktop
+      - install -Dm644 snap/gui/numbers.desktop /app/share/applications/io.github.crossplatform.icloud-for-linux.numbers.desktop
+      - install -Dm644 snap/gui/keynote.desktop /app/share/applications/io.github.crossplatform.icloud-for-linux.keynote.desktop
+      - install -Dm644 snap/gui/find.desktop /app/share/applications/io.github.crossplatform.icloud-for-linux.find.desktop
+      # Install icons
+      - install -Dm644 snap/gui/mail.png /app/share/icons/hicolor/256x256/apps/io.github.crossplatform.icloud-for-linux.mail.png
+      - install -Dm644 snap/gui/contacts.png /app/share/icons/hicolor/256x256/apps/io.github.crossplatform.icloud-for-linux.contacts.png
+      - install -Dm644 snap/gui/calendar.png /app/share/icons/hicolor/256x256/apps/io.github.crossplatform.icloud-for-linux.calendar.png
+      - install -Dm644 snap/gui/photos.png /app/share/icons/hicolor/256x256/apps/io.github.crossplatform.icloud-for-linux.photos.png
+      - install -Dm644 snap/gui/drive.png /app/share/icons/hicolor/256x256/apps/io.github.crossplatform.icloud-for-linux.drive.png
+      - install -Dm644 snap/gui/notes.png /app/share/icons/hicolor/256x256/apps/io.github.crossplatform.icloud-for-linux.notes.png
+      - install -Dm644 snap/gui/reminders.png /app/share/icons/hicolor/256x256/apps/io.github.crossplatform.icloud-for-linux.reminders.png
+      - install -Dm644 snap/gui/pages.png /app/share/icons/hicolor/256x256/apps/io.github.crossplatform.icloud-for-linux.pages.png
+      - install -Dm644 snap/gui/numbers.png /app/share/icons/hicolor/256x256/apps/io.github.crossplatform.icloud-for-linux.numbers.png
+      - install -Dm644 snap/gui/keynote.png /app/share/icons/hicolor/256x256/apps/io.github.crossplatform.icloud-for-linux.keynote.png
+      - install -Dm644 snap/gui/find.png /app/share/icons/hicolor/256x256/apps/io.github.crossplatform.icloud-for-linux.find.png
+      # Fix desktop file entries
+      - sed -i 's|Icon=.*|Icon=io.github.crossplatform.icloud-for-linux.mail|g' /app/share/applications/io.github.crossplatform.icloud-for-linux.mail.desktop
+      - sed -i 's|Exec=.*|Exec=icloud-for-linux mail Mail|g' /app/share/applications/io.github.crossplatform.icloud-for-linux.mail.desktop
+      - sed -i 's|Icon=.*|Icon=io.github.crossplatform.icloud-for-linux.contacts|g' /app/share/applications/io.github.crossplatform.icloud-for-linux.contacts.desktop
+      - sed -i 's|Exec=.*|Exec=icloud-for-linux contacts Contacts|g' /app/share/applications/io.github.crossplatform.icloud-for-linux.contacts.desktop
+      - sed -i 's|Icon=.*|Icon=io.github.crossplatform.icloud-for-linux.calendar|g' /app/share/applications/io.github.crossplatform.icloud-for-linux.calendar.desktop
+      - sed -i 's|Exec=.*|Exec=icloud-for-linux calendar Calendar|g' /app/share/applications/io.github.crossplatform.icloud-for-linux.calendar.desktop
+      - sed -i 's|Icon=.*|Icon=io.github.crossplatform.icloud-for-linux.photos|g' /app/share/applications/io.github.crossplatform.icloud-for-linux.photos.desktop
+      - sed -i 's|Exec=.*|Exec=icloud-for-linux photos Photos|g' /app/share/applications/io.github.crossplatform.icloud-for-linux.photos.desktop
+      - sed -i 's|Icon=.*|Icon=io.github.crossplatform.icloud-for-linux.drive|g' /app/share/applications/io.github.crossplatform.icloud-for-linux.drive.desktop
+      - sed -i 's|Exec=.*|Exec=icloud-for-linux iclouddrive Drive|g' /app/share/applications/io.github.crossplatform.icloud-for-linux.drive.desktop
+      - sed -i 's|Icon=.*|Icon=io.github.crossplatform.icloud-for-linux.notes|g' /app/share/applications/io.github.crossplatform.icloud-for-linux.notes.desktop
+      - sed -i 's|Exec=.*|Exec=icloud-for-linux notes Notes|g' /app/share/applications/io.github.crossplatform.icloud-for-linux.notes.desktop
+      - sed -i 's|Icon=.*|Icon=io.github.crossplatform.icloud-for-linux.reminders|g' /app/share/applications/io.github.crossplatform.icloud-for-linux.reminders.desktop
+      - sed -i 's|Exec=.*|Exec=icloud-for-linux reminders Reminders|g' /app/share/applications/io.github.crossplatform.icloud-for-linux.reminders.desktop
+      - sed -i 's|Icon=.*|Icon=io.github.crossplatform.icloud-for-linux.pages|g' /app/share/applications/io.github.crossplatform.icloud-for-linux.pages.desktop
+      - sed -i 's|Exec=.*|Exec=icloud-for-linux pages Pages|g' /app/share/applications/io.github.crossplatform.icloud-for-linux.pages.desktop
+      - sed -i 's|Icon=.*|Icon=io.github.crossplatform.icloud-for-linux.numbers|g' /app/share/applications/io.github.crossplatform.icloud-for-linux.numbers.desktop
+      - sed -i 's|Exec=.*|Exec=icloud-for-linux numbers Numbers|g' /app/share/applications/io.github.crossplatform.icloud-for-linux.numbers.desktop
+      - sed -i 's|Icon=.*|Icon=io.github.crossplatform.icloud-for-linux.keynote|g' /app/share/applications/io.github.crossplatform.icloud-for-linux.keynote.desktop
+      - sed -i 's|Exec=.*|Exec=icloud-for-linux keynote Keynote|g' /app/share/applications/io.github.crossplatform.icloud-for-linux.keynote.desktop
+      - sed -i 's|Icon=.*|Icon=io.github.crossplatform.icloud-for-linux.find|g' /app/share/applications/io.github.crossplatform.icloud-for-linux.find.desktop
+      - sed -i 's|Exec=.*|Exec=icloud-for-linux find Find|g' /app/share/applications/io.github.crossplatform.icloud-for-linux.find.desktop
